@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">ProjectFrame</string>
+    <string name="alertdialog_title">蜉蝣提示</string>
+
+    <string name="listview_loading">正在加载&#8230;</string>
+    <string name="no_content">啊哦，出错了</string>
+    <string name="you_can_try">你可以尝试</string>
+    <string name="reload">重新加载</string>
+    <string name="xlistview_header_hint_normal">下拉可以刷新</string>
+    <string name="xlistview_header_hint_ready">松开立即刷新</string>
+    <string name="xlistview_header_hint_loading">正在刷新数据中...</string>
+    <string name="xlistview_header_last_time">最后更新：</string>
+    <string name="xlistview_footer_hint_normal">上拉可以加载更多</string>
+    <string name="xlistview_footer_hint_ready">松开立即加载更多</string>
+    <string name="xlistview_footer_hint_loading">正在加载更多的数据...</string>
+
+
+
 </resources>
