@@ -4,12 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.text.TextUtils;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 import com.ray.projectframe.retrofit.ServerException;
 import com.ray.projectframe.utils.NetUtils;
+
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 
 /**

@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 import com.ray.projectframe.ui.view.baseadapter.BaseItemDraggableAdapter;
 
 

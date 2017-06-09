@@ -22,13 +22,12 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 import com.bumptech.glide.Glide;
+import com.ray.projectframe.R;
+import com.ray.projectframe.utils.SystemUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
-import frame.project.ray.projectframe.R;
-import com.ray.projectframe.utils.SystemUtil;
 
 /**
  * Created by itte on 2016/4/16.

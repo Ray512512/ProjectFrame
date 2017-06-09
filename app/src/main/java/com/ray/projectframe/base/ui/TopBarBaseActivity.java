@@ -13,8 +13,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import butterknife.ButterKnife;
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 import com.ray.projectframe.base.mvp.BaseIView;
 import com.ray.projectframe.base.mvp.BasePresenter;
 import com.ray.projectframe.common.ConstantField;
@@ -23,6 +22,8 @@ import com.ray.projectframe.retrofit.ApiService;
 import com.ray.projectframe.ui.viewhelper.VaryViewHelper;
 import com.ray.projectframe.utils.AppManager;
 import com.ray.projectframe.utils.SystemUtil;
+
+import butterknife.ButterKnife;
 
 public abstract class TopBarBaseActivity<P extends BasePresenter>   extends AppCompatActivity implements VaryViewHelper.NetWorkErrorListener,BaseIView {
     TextView tvTitle;

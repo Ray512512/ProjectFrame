@@ -2,7 +2,7 @@ package com.ray.projectframe.ui.viewhelper;
 
 import android.view.View;
 
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 
 
 /**

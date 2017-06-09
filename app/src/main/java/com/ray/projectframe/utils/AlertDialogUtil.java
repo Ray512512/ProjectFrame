@@ -4,7 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 
 
 /**

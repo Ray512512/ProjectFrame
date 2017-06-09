@@ -14,7 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 
 
 /**

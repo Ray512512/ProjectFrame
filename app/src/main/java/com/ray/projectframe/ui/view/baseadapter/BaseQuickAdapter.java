@@ -20,7 +20,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 import com.ray.projectframe.ui.view.baseadapter.animation.AlphaInAnimation;
 import com.ray.projectframe.ui.view.baseadapter.animation.BaseAnimation;
 import com.ray.projectframe.ui.view.baseadapter.animation.ScaleInAnimation;

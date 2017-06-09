@@ -5,8 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.ray.projectframe.R;
+
 import butterknife.ButterKnife;
-import frame.project.ray.projectframe.R;
 
 /**
  * Created by wxy on 16/8/15.

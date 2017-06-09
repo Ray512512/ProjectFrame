@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import frame.project.ray.projectframe.R;
-
 
 /**
  * Created by 陈序员 on 2017/5/3.

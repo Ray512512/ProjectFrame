@@ -3,12 +3,11 @@ package com.ray.projectframe;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import frame.project.ray.projectframe.R;
 import com.ray.projectframe.base.ui.BottomTabBaseActivity;
 import com.ray.projectframe.base.view.BottomTabView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BottomTabBaseActivity {
 

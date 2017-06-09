@@ -6,11 +6,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import java.util.List;
-
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 import com.ray.projectframe.base.view.BottomTabView;
 import com.ray.projectframe.ui.view.viewpager.LimitViewPager;
+
+import java.util.List;
 
 
 public abstract class BottomTabBaseActivity extends BaseActivity {

@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.BindView;
-import frame.project.ray.projectframe.R;
 import com.ray.projectframe.base.ui.TopBarBaseActivity;
 import com.ray.projectframe.utils.ToastUtil;
+
+import butterknife.BindView;
 
 
 public class DemoActivity extends TopBarBaseActivity {

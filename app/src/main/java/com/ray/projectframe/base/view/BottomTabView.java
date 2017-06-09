@@ -11,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ray.projectframe.R;
+
 import java.util.List;
 
-import frame.project.ray.projectframe.R;
 
 /**
  * Created by 陈序员 on 2017/4/28.

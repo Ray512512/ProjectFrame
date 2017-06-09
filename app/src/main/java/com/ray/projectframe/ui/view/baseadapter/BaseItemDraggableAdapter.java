@@ -11,7 +11,7 @@ import android.view.View;
 import java.util.Collections;
 import java.util.List;
 
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 import com.ray.projectframe.ui.view.baseadapter.listener.OnItemDragListener;
 import com.ray.projectframe.ui.view.baseadapter.listener.OnItemSwipeListener;
 

@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
+import com.ray.projectframe.R;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
-import frame.project.ray.projectframe.R;
 
 
 /**

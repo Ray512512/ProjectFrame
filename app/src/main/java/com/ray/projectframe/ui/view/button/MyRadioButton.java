@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
-import frame.project.ray.projectframe.R;
+import com.ray.projectframe.R;
 
 
 public class MyRadioButton extends android.support.v7.widget.AppCompatRadioButton {

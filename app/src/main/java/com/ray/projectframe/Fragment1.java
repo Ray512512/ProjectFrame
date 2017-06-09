@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import frame.project.ray.projectframe.R;
 import com.ray.projectframe.base.ui.BaseFragment;
+
+import butterknife.BindView;
 
 
 /**
