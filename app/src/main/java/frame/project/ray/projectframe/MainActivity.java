@@ -1,5 +1,6 @@
 package frame.project.ray.projectframe;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import java.util.ArrayList;
@@ -36,12 +37,12 @@ public class MainActivity extends BottomTabBaseActivity {
 
 
     @Override
-    protected void setMainLayout() {
+    protected void initPresenter() {
 
     }
 
     @Override
-    protected void initBeforeData() {
+    protected void initView(Bundle savedInstanceState) {
 
     }
 
@@ -50,8 +51,4 @@ public class MainActivity extends BottomTabBaseActivity {
 
     }
 
-    @Override
-    protected void initAfterData() {
-
-    }
 }

@@ -52,4 +52,10 @@ public class L {
             Log.v(tag,msg);
         }
     }
+
+    public static void f(String name,String msg){
+        if (isDebug){
+            FileUtils.writeTxtToFile(msg,FileUtils.path,name);
+        }
+    }
 }

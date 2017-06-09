@@ -4,13 +4,13 @@
               android:orientation="vertical"
               android:layout_height="match_parent">
 
-    <frame.project.ray.projectframe.base.ui.LimitViewPager
+    <frame.project.ray.projectframe.ui.view.viewpager.LimitViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_weight="1000"
         android:layout_height="0dp">
 
-    </frame.project.ray.projectframe.base.ui.LimitViewPager>
+    </frame.project.ray.projectframe.ui.view.viewpager.LimitViewPager>
     <View
         android:layout_width="match_parent"
         android:background="#c7c7c7"

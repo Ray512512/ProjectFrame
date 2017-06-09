@@ -10,6 +10,7 @@ import java.util.List;
 
 import frame.project.ray.projectframe.R;
 import frame.project.ray.projectframe.base.view.BottomTabView;
+import frame.project.ray.projectframe.ui.view.viewpager.LimitViewPager;
 
 
 public abstract class BottomTabBaseActivity extends BaseActivity {
@@ -18,10 +19,9 @@ public abstract class BottomTabBaseActivity extends BaseActivity {
     LimitViewPager viewPager;
     BottomTabView bottomTabView;
     @Override
-    protected void setMainLayout() {
-        setContentView(R.layout.activity_base_bottom_tab);
+    protected int inflateContentView() {
+        return R.layout.activity_base_bottom_tab;
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

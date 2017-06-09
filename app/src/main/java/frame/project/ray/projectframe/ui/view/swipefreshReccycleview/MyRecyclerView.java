@@ -9,8 +9,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
-import com.traffic.wifiapp.ui.view.baseadapter.BaseQuickAdapter;
-import com.traffic.wifiapp.utils.L;
+import frame.project.ray.projectframe.ui.view.baseadapter.BaseQuickAdapter;
+import frame.project.ray.projectframe.utils.L;
 
 
 /**

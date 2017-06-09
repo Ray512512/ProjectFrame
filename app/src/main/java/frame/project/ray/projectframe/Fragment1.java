@@ -25,11 +25,17 @@ public class Fragment1 extends BaseFragment {
     }
 
     @Override
+    protected void initPresenter() {
+
+    }
+    @Override
     protected void initView(Bundle savedInstanceSate) {
         txt.setText(this.getClass().getSimpleName());
         txt.setOnClickListener(v -> {
             startActivity(new Intent(mContext, DemoActivity.class));
         });
     }
+
+
 
 }

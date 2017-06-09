@@ -1,4 +1,4 @@
-package frame.project.ray.projectframe.ui.view;
+package frame.project.ray.projectframe.ui.view.imageview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

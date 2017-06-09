@@ -1,4 +1,4 @@
-package frame.project.ray.projectframe.ui.view;
+package frame.project.ray.projectframe.ui.view.viewpager;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
