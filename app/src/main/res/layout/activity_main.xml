@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -30,6 +30,30 @@
         app:sparkbutton_iconSize="40dp" />
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加一个用户"
+        android:id="@+id/add"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除一个用户"
+        android:id="@+id/delete"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更新一个用户"
+        android:id="@+id/update"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查询一个用户"
+        android:id="@+id/query"/>
+
     <com.ray.projectframe.ui.view.listview.HorizontalListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,4 +61,4 @@
         widget:dividerWidth="5dp"
         android:visibility="gone"
         />
-</RelativeLayout>
+</LinearLayout>
