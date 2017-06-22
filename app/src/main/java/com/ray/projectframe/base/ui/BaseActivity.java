@@ -12,6 +12,7 @@ import com.ray.projectframe.R;
 import com.ray.projectframe.base.mvp.BaseIView;
 import com.ray.projectframe.base.mvp.BasePresenter;
 import com.ray.projectframe.common.ConstantField;
+import com.ray.projectframe.rxbus.RxBus;
 import com.ray.projectframe.ui.viewhelper.VaryViewHelper;
 import com.ray.projectframe.utils.AppManager;
 import com.ray.projectframe.utils.SystemUtil;
@@ -39,6 +40,8 @@ public abstract class BaseActivity<P extends BasePresenter>  extends AppCompatAc
 
         setContentView(inflateContentView());
         ButterKnife.bind(this);
+
+        RxBus.get().register(this);
         initPresenter();
         initView(savedInstanceState);
         initEvents();
@@ -67,6 +70,7 @@ public abstract class BaseActivity<P extends BasePresenter>  extends AppCompatAc
         if (mPresenter != null) {
             mPresenter.onDetachView();
         }
+        RxBus.get().unregister(this);
     }
 
     //展示加载页

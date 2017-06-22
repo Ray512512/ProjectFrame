@@ -19,6 +19,7 @@ import com.ray.projectframe.base.mvp.BasePresenter;
 import com.ray.projectframe.common.ConstantField;
 import com.ray.projectframe.retrofit.ApiManager;
 import com.ray.projectframe.retrofit.ApiService;
+import com.ray.projectframe.rxbus.RxBus;
 import com.ray.projectframe.ui.viewhelper.VaryViewHelper;
 import com.ray.projectframe.utils.AppManager;
 import com.ray.projectframe.utils.SystemUtil;
@@ -54,6 +55,8 @@ public abstract class TopBarBaseActivity<P extends BasePresenter>   extends AppC
         //将继承 TopBarBaseActivity 的布局解析到 FrameLayout 里面
         LayoutInflater.from(this).inflate(inflateContentView(), viewContent);
         ButterKnife.bind(this);
+
+        RxBus.get().register(this);
         initPresenter();
         initView(savedInstanceState);
         initEvents();
@@ -151,6 +154,7 @@ public abstract class TopBarBaseActivity<P extends BasePresenter>   extends AppC
         if (mPresenter != null) {
             mPresenter.onDetachView();
         }
+        RxBus.get().unregister(this);
     }
 
     //展示加载页

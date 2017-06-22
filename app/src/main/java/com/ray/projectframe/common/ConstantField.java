@@ -12,6 +12,5 @@ public class ConstantField {
     public static final int TYPE_VIEW_ERROR = 1;//错误页
     public static final int TYPE_VIEW_DATA = 3;//data页
 
-    public static final String USER = "user";
 
 }

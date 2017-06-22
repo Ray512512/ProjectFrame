@@ -12,6 +12,7 @@ import com.ray.projectframe.R;
 import com.ray.projectframe.base.mvp.BaseIView;
 import com.ray.projectframe.base.mvp.BasePresenter;
 import com.ray.projectframe.common.ConstantField;
+import com.ray.projectframe.rxbus.RxBus;
 import com.ray.projectframe.ui.viewhelper.VaryViewHelper;
 import com.ray.projectframe.utils.SystemUtil;
 
@@ -49,6 +50,8 @@ public abstract class BaseFragment<P extends BasePresenter>  extends Fragment im
             rootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             ButterKnife.bind(this, rootView);
             mContext = getActivity();
+
+            RxBus.get().register(this);
             initPresenter();
             initView(savedInstanceState);
             return rootView;
@@ -106,6 +109,12 @@ public abstract class BaseFragment<P extends BasePresenter>  extends Fragment im
             viewType = ConstantField.TYPE_VIEW_ERROR;
             mVaryViewHelper.showNetWorkErrorView();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RxBus.get().unregister(this);
     }
 
     @Override

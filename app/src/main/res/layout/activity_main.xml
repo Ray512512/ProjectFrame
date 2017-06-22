@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="frame.project.ray.projectframe.project.ray.projectframe.MainActivity">
+    xmlns:widget="http://schemas.android.com/apk/res-auto"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,4 +17,24 @@
         android:id="@+id/tv_test"
      />
 
-</LinearLayout>
+    <com.varunest.sparkbutton.SparkButton
+        android:id="@+id/spark_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        app:sparkbutton_activeImage="@mipmap/user1"
+        app:sparkbutton_inActiveImage="@mipmap/user2"
+        app:sparkbutton_primaryColor="@color/green"
+        app:sparkbutton_secondaryColor="@color/main_dark"
+        app:sparkbutton_iconSize="40dp" />
+
+
+    <com.ray.projectframe.ui.view.listview.HorizontalListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h_listview"
+        widget:dividerWidth="5dp"
+        android:visibility="gone"
+        />
+</RelativeLayout>

@@ -9,6 +9,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ray.projectframe.utils.AppManager;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -19,8 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.ray.projectframe.utils.AppManager;
 
 /**
  * Created by ray on 2017/4/16.
@@ -114,7 +114,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }.start();
         //保存日志文件
         saveCrashInfo2File(ex);
-        return true;
+        return false;
     }
 
 

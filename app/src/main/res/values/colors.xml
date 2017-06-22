@@ -25,5 +25,9 @@
 
 
     <color name="mainColor">#00BCD4</color>
+    <color name="ripple_press">#636060</color>
+    <color name="pressColor">#32f1f1f1</color>
+    <color name="green">#02B890</color>
+    <color name="main_dark">#91e2d0</color>
 
 </resources>
