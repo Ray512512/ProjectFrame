@@ -7,10 +7,6 @@ package com.ray.projectframe.common;
 
 public class ConstantField {
 
-    //view的三中状态
-    public static final int TYPE_VIEW_EMPTY = 0;//空
-    public static final int TYPE_VIEW_ERROR = 1;//错误页
-    public static final int TYPE_VIEW_DATA = 3;//data页
 
 
 }

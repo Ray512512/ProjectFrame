@@ -11,37 +11,38 @@ import android.view.Window;
 import com.ray.projectframe.R;
 import com.ray.projectframe.base.mvp.BaseIView;
 import com.ray.projectframe.base.mvp.BasePresenter;
-import com.ray.projectframe.common.ConstantField;
 import com.ray.projectframe.rxbus.RxBus;
 import com.ray.projectframe.ui.viewhelper.VaryViewHelper;
 import com.ray.projectframe.utils.AppManager;
 import com.ray.projectframe.utils.SystemUtil;
 
-import butterknife.ButterKnife;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 
 /**
- * Created by caism on 2017/4/13.
+ * Created by ray on 2017/4/13.
+ * ButterKnife.bind(this); 在子类initView中调用
  */
 
 public abstract class BaseActivity<P extends BasePresenter>  extends AppCompatActivity implements VaryViewHelper.NetWorkErrorListener,BaseIView {
     public Context mContext;
     protected VaryViewHelper mVaryViewHelper;
-    protected int viewType = ConstantField.TYPE_VIEW_DATA;
     protected P mPresenter;
+    private CompositeDisposable disposables2Destroy;// 管理Destroy取消订阅者者
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
+        disposables2Destroy=new CompositeDisposable();
         AppManager.getInstance(mContext).addActivity(this);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(inflateContentView());
-        ButterKnife.bind(this);
-
         RxBus.get().register(this);
+
         initPresenter();
         initView(savedInstanceState);
         initEvents();
@@ -66,39 +67,56 @@ public abstract class BaseActivity<P extends BasePresenter>  extends AppCompatAc
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AppManager.getInstance(mContext).killActivity(this);
-        if (mPresenter != null) {
-            mPresenter.onDetachView();
-        }
+        if (mPresenter != null) mPresenter.onDetachView();
+        if(mVaryViewHelper!=null)mVaryViewHelper.releaseVaryView();
+        disposables2Destroy.dispose();
         RxBus.get().unregister(this);
+        AppManager.getInstance(mContext).killActivity(this);
     }
 
     //展示加载页
-    public void showLoadingView() {
+    public void showLoading() {
         if (mVaryViewHelper != null) {
             mVaryViewHelper.showLoadingView();
         }
     }
 
     //展示网络错误页
+    @Override
     public void showNetWorkErrorView() {
         if (mVaryViewHelper != null) {
             mVaryViewHelper.showNetWorkErrorView();
         }
     }
+
+    //展示服务器错误页
+    @Override
     public void showErrorView() {
         if (mVaryViewHelper != null) {
-            viewType = ConstantField.TYPE_VIEW_ERROR;
-            mVaryViewHelper.showNetWorkErrorView();
+            mVaryViewHelper.showErrorView();
         }
     }
+
+    @Override
+    public void showEmptyView() {
+        if (mVaryViewHelper != null) {
+            mVaryViewHelper.showEmptyView();
+        }
+    }
+
     //展示数据页
+    @Override
     public void showDataView() {
         if (mVaryViewHelper != null) {
-            viewType = ConstantField.TYPE_VIEW_DATA;
             mVaryViewHelper.showDataView();
         }
     }
+
+    @Override
+    public void addRxDestroy(Disposable d) {
+        disposables2Destroy.add(d);
+    }
+
 
     //设置覆盖加载页面 网络错误页面
     protected void initHelperView(View bindView) {
@@ -111,6 +129,8 @@ public abstract class BaseActivity<P extends BasePresenter>  extends AppCompatAc
                 .setRefreshListener(this)//错误页点击刷新实现
                 .build();
     }
+
+
 
     //打开设置网络
     @Override

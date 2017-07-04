@@ -11,49 +11,46 @@ import android.view.ViewGroup;
 import com.ray.projectframe.R;
 import com.ray.projectframe.base.mvp.BaseIView;
 import com.ray.projectframe.base.mvp.BasePresenter;
-import com.ray.projectframe.common.ConstantField;
 import com.ray.projectframe.rxbus.RxBus;
 import com.ray.projectframe.ui.viewhelper.VaryViewHelper;
 import com.ray.projectframe.utils.SystemUtil;
 
-import butterknife.ButterKnife;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
- * Created by xy on 16/5/11.
+ * Created by ray on 16/5/11.
+ * ButterKnife.bind(this); 在子类initView中调用
  */
-public abstract class BaseFragment<P extends BasePresenter>  extends Fragment implements VaryViewHelper.NetWorkErrorListener, VaryViewHelper.TransferListener ,BaseIView {
+public abstract class BaseFragment<P extends BasePresenter>  extends Fragment implements VaryViewHelper.NetWorkErrorListener,BaseIView {
     protected Context mContext;
 
     public P mPresenter;
     protected VaryViewHelper mVaryViewHelper;
-    protected int viewType = ConstantField.TYPE_VIEW_DATA;
+    private CompositeDisposable disposables2Destroy;// 管理Destroy取消订阅者者
 
-    protected View rootView;// 根视图
     /**
      * 需要初始化Presenter重写
      **/
     protected abstract int inflateContentView();
     protected abstract void initView(Bundle savedInstanceSate);
     protected abstract void initPresenter();
+    protected abstract void initEvents();
 
-    //用来保存当前界面的状态和恢复上一个界面的状态
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        setUserVisibleHint(true);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView;
         if (inflateContentView() > 0) {
             rootView = inflater.inflate(inflateContentView(), null);
             rootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            ButterKnife.bind(this, rootView);
             mContext = getActivity();
+            disposables2Destroy=new CompositeDisposable();
 
             RxBus.get().register(this);
             initPresenter();
             initView(savedInstanceState);
+            initEvents();
             return rootView;
         }
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -67,66 +64,60 @@ public abstract class BaseFragment<P extends BasePresenter>  extends Fragment im
                 .setEmptyView(LayoutInflater.from(getActivity()).inflate(R.layout.view_empty, null))//空页面，无实际逻辑处理
                 .setErrorView(LayoutInflater.from(getActivity()).inflate(R.layout.view_error, null))//错误页面
                 .setNetWorkErrorView(LayoutInflater.from(getActivity()).inflate(R.layout.view_neterror, null))//网络错误页
-//                .setTransferMineView(LayoutInflater.from(getActivity()).inflate(R.layout.view_transfer_mine, null))//我的中转页
                 .setRefreshListener(this)//错误页点击刷新实现
-                .setTransferListener(this)//点击跳转登录页实现
                 .build();
     }
-
-    //展示空页面
-    public void showEmpty() {
-        if (mVaryViewHelper != null) {
-            viewType = ConstantField.TYPE_VIEW_EMPTY;
-            mVaryViewHelper.showEmptyView();
-        }
-    }
-
     //展示加载页
-    public void showLoadingView() {
+    public void showLoading() {
         if (mVaryViewHelper != null) {
             mVaryViewHelper.showLoadingView();
         }
     }
 
     //展示网络错误页
+    @Override
     public void showNetWorkErrorView() {
         if (mVaryViewHelper != null) {
             mVaryViewHelper.showNetWorkErrorView();
         }
     }
 
+    //展示服务器错误页
+    @Override
+    public void showErrorView() {
+        if (mVaryViewHelper != null) {
+            mVaryViewHelper.showErrorView();
+        }
+    }
+
+    @Override
+    public void showEmptyView() {
+        if (mVaryViewHelper != null) {
+            mVaryViewHelper.showEmptyView();
+        }
+    }
+
     //展示数据页
+    @Override
     public void showDataView() {
         if (mVaryViewHelper != null) {
-            viewType = ConstantField.TYPE_VIEW_DATA;
             mVaryViewHelper.showDataView();
         }
     }
 
-    //展示错误页
-    public void showErrorView() {
-        if (mVaryViewHelper != null) {
-            viewType = ConstantField.TYPE_VIEW_ERROR;
-            mVaryViewHelper.showNetWorkErrorView();
-        }
+    @Override
+    public void addRxDestroy(Disposable d) {
+        disposables2Destroy.add(d);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if(mPresenter!=null) mPresenter.onDetachView();
+        if(mVaryViewHelper!=null)mVaryViewHelper.releaseVaryView();
+        disposables2Destroy.dispose();
         RxBus.get().unregister(this);
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
-    //跳转去登录
-    @Override
-    public void onLoginAction() {
-    }
-
 
     //打开设置网络
     @Override

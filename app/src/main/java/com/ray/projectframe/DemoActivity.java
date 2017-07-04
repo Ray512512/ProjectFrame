@@ -1,23 +1,25 @@
 package com.ray.projectframe;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.DragEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.jakewharton.rxbinding2.view.RxView;
-import com.ray.projectframe.base.ui.TopBarBaseActivity;
+import com.ray.projectframe.base.ui.BaseActivity;
 import com.ray.projectframe.bean.User;
 import com.ray.projectframe.gen.UserDao;
 import com.ray.projectframe.greendao.MyDaoMaster;
+import com.ray.projectframe.mvp.presenter.DemoPresenter;
+import com.ray.projectframe.mvp.view.LoginIView;
 import com.ray.projectframe.rxbus.Event;
-import com.ray.projectframe.rxbus.RxBus;
 import com.ray.projectframe.ui.view.listview.HorizontalListView;
 import com.ray.projectframe.utils.ToastUtil;
 import com.varunest.sparkbutton.SparkButton;
@@ -29,9 +31,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
+import tech.michaelx.authcode.AuthCode;
+import tech.michaelx.authcode.CodeConfig;
 
-
-public class DemoActivity extends TopBarBaseActivity {
+@RuntimePermissions
+public class DemoActivity extends BaseActivity implements  LoginIView{
     private static final String TAG = "DemoActivity";
     @BindView(R.id.tv_test)
     TextView tvTest;
@@ -48,14 +54,19 @@ public class DemoActivity extends TopBarBaseActivity {
 
     @Override
     protected void initPresenter() {
+        DemoActivityPermissionsDispatcher.getDeviceIdPerssionWithCheck(this);
 
     }
+    @NeedsPermission({android.Manifest.permission.READ_PHONE_STATE})
+    public void getDeviceIdPerssion(){
+    }
+
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         setTitle(getClass().getSimpleName());
-        setTopLeftButton(R.mipmap.ic_launcher);
-        setTopRightButton(R.mipmap.ic_launcher_round, () -> Toast.makeText(mContext, "123", Toast.LENGTH_SHORT).show());
+//        setTopLeftButton(R.mipmap.ic_launcher);
+//        setTopRightButton(R.mipmap.ic_launcher_round, () -> Toast.makeText(mContext, "123", Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -97,7 +108,8 @@ public class DemoActivity extends TopBarBaseActivity {
         RxView.clicks(tvTest).throttleFirst(1, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(@NonNull Object o) throws Exception {
-                RxBus.get().post("", new Event.DemoEvent());
+//                RxBus.get().post("", new Event.DemoEvent());
+                new DemoPresenter((Activity) mContext, DemoActivity.this).login(mContext,"17775526994");
             }
         });
 
@@ -124,6 +136,17 @@ public class DemoActivity extends TopBarBaseActivity {
         }, 300);
     }
 
+    private void registSMSreciver(){
+        CodeConfig config = new CodeConfig.Builder()
+                .codeLength(4) // 设置验证码长度
+                .smsFromStart(133) // 设置验证码发送号码前几位数字
+                //.smsFrom(1690123456789) // 如果验证码发送号码固定，则可以设置验证码发送完整号码
+                .smsBodyStartWith("百度科技") // 设置验证码短信开头文字
+                .smsBodyContains("验证码") // 设置验证码短信内容包含文字
+                .build();
+        EditText editText=new EditText(mContext);
+        AuthCode.getInstance().with(mContext).config(config).into(editText);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,5 +172,10 @@ public class DemoActivity extends TopBarBaseActivity {
                 tvTest.setText(s==null?"暂无此用户":s.getName());
                 break;
         }
+    }
+
+    @Override
+    public void onLoginSuccess() {
+
     }
 }

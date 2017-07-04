@@ -1,6 +1,9 @@
 package com.ray.projectframe.retrofit;
 
 
+import com.ray.projectframe.mvp.presenter.DemoBean;
+import com.ray.projectframe.mvp.presenter.DemoEntry;
+
 import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -12,8 +15,9 @@ import retrofit2.http.POST;
 public interface ApiService {
 
 
-    @POST("")
-    Observable<BaseModel<Object>> register(@Body Object registEntry);
+    @POST("backstage/adsite/registerWifi.html")
+    Observable<BaseModel<DemoBean>> registerAndLogin(@Body DemoEntry registEntry);
+
 }
 
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:widget="http://schemas.android.com/apk/res-auto"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
     android:clipChildren="false"
     android:clipToPadding="false"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -60,5 +61,18 @@
         android:id="@+id/h_listview"
         widget:dividerWidth="5dp"
         android:visibility="gone"
+        />
+
+    <!--具体属性//https://github.com/lygttpod/SuperTextView-->
+    <com.allen.library.SuperTextView
+        android:id="@+id/super_tv"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        stv:sLeftBottomTextColor2="@color/colorAccent"
+        stv:sLeftBottomTextString="招商银行（8888）"
+        stv:sLeftBottomTextString2="限额说明>>"
+        stv:sLeftIconRes="@mipmap/ic_launcher"
+        stv:sLeftTopTextString="银行卡支付"
+        stv:sLineShow="bottom"
         />
 </LinearLayout>

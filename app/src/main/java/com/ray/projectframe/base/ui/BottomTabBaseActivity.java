@@ -12,7 +12,9 @@ import com.ray.projectframe.ui.view.viewpager.LimitViewPager;
 
 import java.util.List;
 
-
+/**
+* 应用主tab activity  继承者无需做任何事
+* */
 public abstract class BottomTabBaseActivity extends BaseActivity {
 
     FragmentPagerAdapter adapter;

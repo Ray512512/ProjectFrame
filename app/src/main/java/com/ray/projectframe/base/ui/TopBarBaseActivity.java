@@ -1,3 +1,4 @@
+/*
 package com.ray.projectframe.base.ui;
 
 import android.content.Context;
@@ -35,7 +36,6 @@ public abstract class TopBarBaseActivity<P extends BasePresenter>   extends AppC
     public ApiService mApiService;
     protected P mPresenter;
     protected VaryViewHelper mVaryViewHelper;
-    protected int viewType = ConstantField.TYPE_VIEW_DATA;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,17 +64,23 @@ public abstract class TopBarBaseActivity<P extends BasePresenter>   extends AppC
 
     protected abstract int inflateContentView();
     protected abstract void initPresenter() ;
-    /**
+    */
+/**
      * 初始化view
-     * */
+     * *//*
+
     protected abstract void initView(Bundle savedInstanceState) ;
-    /**
+    */
+/**
      * 初始化事件
-     */
+     *//*
+
     protected abstract void initEvents();
-    /**
+    */
+/**
      * 初始化p
-     **/
+     **//*
+
 
     protected void setTitle(String title) {
         if (!TextUtils.isEmpty(title)) {
@@ -209,3 +215,4 @@ public abstract class TopBarBaseActivity<P extends BasePresenter>   extends AppC
     }
 }
 
+*/

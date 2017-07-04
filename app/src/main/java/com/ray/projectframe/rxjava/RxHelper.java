@@ -3,11 +3,13 @@ package com.ray.projectframe.rxjava;
 
 import com.ray.projectframe.retrofit.BaseModel;
 import com.ray.projectframe.retrofit.ServerException;
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
-import io.reactivex.FlowableTransformer;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -22,17 +24,18 @@ public class RxHelper {
      * @return
      */
 
-    public static <T> FlowableTransformer<BaseModel<T>, T> handleResult() {
-        return upstream -> upstream.flatMap(new Function<BaseModel<T>, Flowable<T>>() {
+    public static <T> ObservableTransformer<BaseModel<T>, T> handleResult() {
+        return upstream -> upstream.flatMap(new Function<BaseModel<T>, Observable<T>>() {
             @Override
-            public Flowable<T> apply(@NonNull BaseModel<T> result) throws Exception {
+            public Observable<T> apply(@NonNull BaseModel<T> result) throws Exception {
                 if (result.success()) {
                     return createData(result.data);
                 } else {
-                    return Flowable.error(new ServerException(result.msg));
+                    return Observable.error(new ServerException(result.msg));
                 }
             }
-        });
+        }).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread());
 
     }
 
@@ -43,15 +46,15 @@ public class RxHelper {
      * @param <T>
      * @return
      */
-    private static <T> Flowable<T> createData(final T data) {
+    private static <T> Observable<T> createData(final T data) {
 
-        return Flowable.create(subscriber -> {
+        return Observable.create(subscriber -> {
             try {
                 subscriber.onNext(data);
                 subscriber.onComplete();
             } catch (Exception e) {
                 subscriber.onError(e);
             }
-        }, BackpressureStrategy.BUFFER);
+        });
     }
 }

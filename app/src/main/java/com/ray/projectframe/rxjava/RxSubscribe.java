@@ -1,74 +1,47 @@
 package com.ray.projectframe.rxjava;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.ray.projectframe.R;
+import com.ray.projectframe.base.mvp.BaseIView;
 import com.ray.projectframe.retrofit.ServerException;
 import com.ray.projectframe.utils.NetUtils;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 
 /**
  * Created by Jam on 16-7-21
  * Description: 自定义Subscribe
  */
-public abstract class RxSubscribe<T> implements Subscriber<T> {
+public abstract class RxSubscribe<T> implements Observer<T> {
     private Context mContext;
-    private ProgressDialog dialog;
-    private String msg = "请稍后...";
+    private BaseIView mBaseIView;
 
 
-    public RxSubscribe() {
-    }
-
-    protected boolean showDialog() {
-        if (mContext == null || TextUtils.isEmpty(msg)) return false;
-        return true;
+    public RxSubscribe(BaseIView baseIView) {
+        this.mBaseIView=baseIView;
+        mBaseIView.showLoading();
     }
 
     /**
      * @param context context
-     * @param msg     dialog message
      */
-    public RxSubscribe(Context context, String msg) {
+    public RxSubscribe(Context context,BaseIView baseIView) {
+        this(baseIView);
         this.mContext = context;
-        this.msg = msg;
     }
 
-    public RxSubscribe(Context context, int msg) {
-        this.mContext = context;
-        this.msg = mContext.getString(msg);
-    }
-
-
-    /**
-     * @param context context
-     */
-    public RxSubscribe(Context context) {
-        this(context, "请稍后...");
-    }
 
     @Override
     public void onComplete() {
-        if (showDialog())
-            dialog.dismiss();
+        mBaseIView.showDataView();
     }
 
     @Override
-    public void onSubscribe(Subscription s) {
-        if (showDialog()) {
-            dialog = new ProgressDialog(mContext);
-            dialog.setMessage(msg);
-            //点击取消的时候取消订阅
-            dialog.setOnCancelListener(dialog1 -> {
-                onCancel();
-            });
-            dialog.show();
-        }
+    public void onSubscribe(Disposable s) {
+        mBaseIView.addRxDestroy(s);
     }
 
     @Override
@@ -78,6 +51,7 @@ public abstract class RxSubscribe<T> implements Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
+        mBaseIView.showDataView();
         e.printStackTrace();
         if (!NetUtils.checkNetWork(mContext)) { //这里自行替换判断网络的代码
             _onError(mContext.getString(R.string.net_error));
@@ -86,19 +60,10 @@ public abstract class RxSubscribe<T> implements Subscriber<T> {
         } else {
             _onError(mContext.getString(R.string.net_failed));
         }
-        if (showDialog())
-            dialog.dismiss();
     }
 
-    protected abstract void _onNext(T t);
+    abstract public  void _onNext(T t);
 
-    protected abstract void _onError(String message);
+    abstract public  void _onError(String message);
 
-    /**
-     * 取消的时候，取消对observable的订阅，同时也取消了http请求
-     */
-    public void onCancel() {
-//        if (!this.isUnsubscribed()) {
-//            this.unsubscribe();
-    }
 }
