@@ -30,31 +30,34 @@
         app:sparkbutton_secondaryColor="@color/main_dark"
         app:sparkbutton_iconSize="40dp" />
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="添加一个用户"
+        android:text="添加"
         android:id="@+id/add"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="删除一个用户"
+        android:text="删除"
         android:id="@+id/delete"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="更新一个用户"
+        android:text="更新"
         android:id="@+id/update"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="查询一个用户"
+        android:text="查询"
         android:id="@+id/query"/>
-
+</LinearLayout>
     <com.ray.projectframe.ui.view.listview.HorizontalListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,4 +78,25 @@
         stv:sLeftTopTextString="银行卡支付"
         stv:sLineShow="bottom"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选图"
+        android:id="@+id/seletor_pic"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="拍照"
+        android:id="@+id/take_photo"/>
+
+    <ImageView
+        android:id="@+id/img_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        </LinearLayout>
 </LinearLayout>
