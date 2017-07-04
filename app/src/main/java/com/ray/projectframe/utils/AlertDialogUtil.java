@@ -21,29 +21,30 @@ public class AlertDialogUtil {
      * 自定义两个按钮，自定义提示内容 监听positive按钮
      * */
     public static  void  AlertDialog(Context context, String message, String PositiveButton, String NegativeButton, DialogInterface.OnClickListener listener){
-        final AlertDialog.Builder builder = getBuild(context,message);
-        builder.setPositiveButton(PositiveButton, listener);
-        builder.setNegativeButton(NegativeButton, (dialogInterface, i) -> builder.create().dismiss());
-        builder.create().show();
+         getBuild(context,message)
+        .setPositiveButton(PositiveButton, listener)
+        .setNegativeButton(NegativeButton, (dialogInterface, i) -> dialogInterface.dismiss())
+        .create().show();
     }
 
     /**
      * 自定义两个按钮，自定义提示内容 监听两个按钮
      * */
     public static  void  AlertDialog(Context context, String message, String PositiveButton, String NegativeButton, DialogInterface.OnClickListener listener, DialogInterface.OnClickListener listener2){
-        final AlertDialog.Builder builder = getBuild(context,message);
-        builder.setPositiveButton(PositiveButton, listener);
-        builder.setNegativeButton(NegativeButton, listener2);
-        builder.create().show();
+         getBuild(context,message)
+        .setPositiveButton(PositiveButton, listener)
+        .setNegativeButton(NegativeButton, listener2)
+        .create().show();
     }
     /**
      * 自定义两个按钮，自定义所有， 监听positive按钮
      * */
     public static  void  AlertDialog(Context context, String title, String message, String PositiveButton, String NegativeButton, DialogInterface.OnClickListener listener){
-        final AlertDialog.Builder builder =getBuild(context,message);
-        builder.setPositiveButton(PositiveButton, listener);
-        builder.setNegativeButton(NegativeButton, (dialogInterface, i) -> builder.create().dismiss());
-        builder.create().show();
+        getBuild(context,message)
+        .setTitle(title)
+        .setPositiveButton(PositiveButton, listener)
+        .setNegativeButton(NegativeButton, (dialogInterface, i) -> dialogInterface.dismiss())
+        .create().show();
     }
 
     /**
@@ -51,14 +52,14 @@ public class AlertDialogUtil {
      *自定义一个按钮 无任何监听 点击取消
      **/
     public static  void  AlertDialog(Context context, String message, String NegativeButton){
-        final AlertDialog.Builder builder = getBuild(context,message);
-        builder.setNegativeButton(NegativeButton, (dialogInterface, i) -> builder.create().dismiss());
-        builder.create().show();
+        getBuild(context,message)
+        .setNegativeButton(NegativeButton, (dialogInterface, i) -> dialogInterface.dismiss())
+        .create().show();
     }
 
     public static  void  AlertDialog(Context context, String PositiveButton, String message,DialogInterface.OnClickListener listener){
-        final AlertDialog.Builder builder = getBuild(context,message);
-        builder.setPositiveButton(PositiveButton, listener);
-        builder.create().show();
+        getBuild(context,message)
+        .setPositiveButton(PositiveButton, listener)
+        .create().show();
     }
 }

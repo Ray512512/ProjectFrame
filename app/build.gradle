@@ -12,6 +12,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -57,6 +58,7 @@ dependencies {
 
     //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     //图片加载
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     //网络框架

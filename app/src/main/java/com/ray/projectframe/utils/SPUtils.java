@@ -12,7 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 
-import com.ray.projectframe.common.MyApplication;
+import com.ray.projectframe.common.FrameApplication;
 
 /**
  * Created by ray on 2016/3/27.
@@ -23,7 +23,7 @@ public class SPUtils {
 
     private static SharedPreferences getmPreferences(){
         if(mPreferences==null){
-            mPreferences= MyApplication.getInstance().getSharedPreferences(KEY, Context.MODE_PRIVATE);
+            mPreferences= FrameApplication.getInstance().getSharedPreferences(KEY, Context.MODE_PRIVATE);
         }
         return mPreferences;
     }

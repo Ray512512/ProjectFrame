@@ -29,5 +29,6 @@
     <color name="pressColor">#32f1f1f1</color>
     <color name="green">#02B890</color>
     <color name="main_dark">#91e2d0</color>
+    <color name="mis_actionbar_color">#21282C</color>
 
 </resources>

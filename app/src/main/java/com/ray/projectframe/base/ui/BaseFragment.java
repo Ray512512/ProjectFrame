@@ -20,7 +20,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * Created by ray on 16/5/11.
- * ButterKnife.bind(this); 在子类initView中调用
+ * ButterKnife.bind(this,view); 在子类initView中调用
  */
 public abstract class BaseFragment<P extends BasePresenter>  extends Fragment implements VaryViewHelper.NetWorkErrorListener,BaseIView {
     protected Context mContext;
@@ -33,7 +33,7 @@ public abstract class BaseFragment<P extends BasePresenter>  extends Fragment im
      * 需要初始化Presenter重写
      **/
     protected abstract int inflateContentView();
-    protected abstract void initView(Bundle savedInstanceSate);
+    protected abstract void initView(View v);
     protected abstract void initPresenter();
     protected abstract void initEvents();
 
@@ -49,7 +49,7 @@ public abstract class BaseFragment<P extends BasePresenter>  extends Fragment im
 
             RxBus.get().register(this);
             initPresenter();
-            initView(savedInstanceState);
+            initView(rootView);
             initEvents();
             return rootView;
         }

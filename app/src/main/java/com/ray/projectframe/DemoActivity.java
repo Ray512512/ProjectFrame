@@ -64,6 +64,7 @@ public class DemoActivity extends BaseActivity implements  LoginIView{
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        ButterKnife.bind(this);
         setTitle(getClass().getSimpleName());
 //        setTopLeftButton(R.mipmap.ic_launcher);
 //        setTopRightButton(R.mipmap.ic_launcher_round, () -> Toast.makeText(mContext, "123", Toast.LENGTH_SHORT).show());

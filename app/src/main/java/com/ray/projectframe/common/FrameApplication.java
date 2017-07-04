@@ -9,11 +9,11 @@ import com.ray.projectframe.greendao.MyDaoMaster;
  * email：1452011874@qq.com
  */
 
-public class MyApplication extends Application {
-    private static MyApplication instance;
+public class FrameApplication extends Application {
+    private static FrameApplication instance;
 
 
-    public static MyApplication getInstance() {
+    public static FrameApplication getInstance() {
         return instance;
     }
 
@@ -23,6 +23,6 @@ public class MyApplication extends Application {
         CrashHandler.getInstance().init(this);
         instance=this;
 
-        MyDaoMaster.getInstance(this).init();
+        MyDaoMaster.getInstance(this).init("test");
     }
 }

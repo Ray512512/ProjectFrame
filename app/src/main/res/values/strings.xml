@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">ProjectFrame</string>
-    <string name="alertdialog_title">蜉蝣提示</string>
+    <string name="app_name">RayFrame</string>
+    <string name="alertdialog_title">提示</string>
 
     <string name="listview_loading">正在加载&#8230;</string>
     <string name="no_content">啊哦，出错了</string>
@@ -14,6 +14,20 @@
     <string name="xlistview_footer_hint_ready">松开立即加载更多</string>
     <string name="xlistview_footer_hint_loading">正在加载更多的数据...</string>
 
-
+    <string name="mis_folder_all">All Images</string>
+    <string name="mis_preview">Preview</string>
+    <string name="mis_msg_no_camera">No system camera found</string>
+    <string name="mis_msg_amount_limit">Select images amount is limit</string>
+    <string name="mis_action_done">Done</string>
+    <string name="mis_action_button_string">%1$s(%2$d/%3$d)</string>
+    <string name="mis_photo_unit">Shot</string>
+    <string name="mis_tip_take_photo">Take photo</string>
+    <string name="mis_error_image_not_exist">Image error</string>
+    <string name="mis_error_no_permission">Has no permission</string>
+    <string name="mis_permission_dialog_title">Permission Deny</string>
+    <string name="mis_permission_dialog_ok">OK</string>
+    <string name="mis_permission_dialog_cancel">CANCEL</string>
+    <string name="mis_permission_rationale">Storage read permission is needed to pick files.</string>
+    <string name="mis_permission_rationale_write_storage">Storage write permission is needed to save the image.</string>
 
 </resources>

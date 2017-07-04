@@ -31,5 +31,7 @@
     <dimen name="text_normal_size">14sp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-
+    <dimen name="mis_image_size">120dp</dimen>
+    <dimen name="mis_space_size">2dp</dimen>
+    <dimen name="mis_folder_cover_size">72dp</dimen>
 </resources>
