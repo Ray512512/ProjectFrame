@@ -2,6 +2,7 @@ package com.ray.library.retrofit;
 
 
 import com.ray.library.bean.BaseModel;
+import com.ray.library.bean.Demo;
 import com.ray.library.bean.User;
 
 import io.reactivex.Observable;
@@ -17,6 +18,8 @@ public interface ApiService {
     @POST("backstage/adsite/registerWifi.html")
     Observable<BaseModel<User>> registerAndLogin();
 
+    @POST("backstage/adsite/registerWifi.html")
+    Observable<BaseModel<Demo>> registerAndLogin2();
 }
 
 

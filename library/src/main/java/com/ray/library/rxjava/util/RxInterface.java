@@ -7,8 +7,12 @@ package com.ray.library.rxjava.util;
 
 public class RxInterface {
 
+    public  interface simple {
+        void action();
+    }
+
     //无条件轮训
-    public  interface intervalInterface1{
+    public  interface intervalInterface1 {
          void action(long time);
     }
 
@@ -18,4 +22,9 @@ public class RxInterface {
          void action(long time);
     }
 
+    //联合判断
+    public  interface intervalCombineLatest{
+        boolean getResult();
+        void action(boolean b);
+    }
 }

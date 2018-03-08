@@ -9,6 +9,10 @@ import java.io.Serializable;
 
 public class DemoBean implements Serializable{
 
+    public DemoBean(String user_id) {
+        this.user_id = user_id;
+    }
+
     private double lng,lat;
     /**
      * user_id : 617

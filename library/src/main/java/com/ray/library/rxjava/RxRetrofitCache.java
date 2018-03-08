@@ -3,6 +3,7 @@ package com.ray.library.rxjava;
 import android.content.Context;
 
 import com.ray.library.retrofit.CacheManager;
+import com.ray.library.utils.SPUtils;
 
 import java.io.Serializable;
 
@@ -52,4 +53,27 @@ public class RxRetrofitCache {
     }
 
 
+    public static <T> Observable<T> load(final Context context, final String cacheKey,  Observable<T> fromNetwork, boolean forceRefresh) {
+        Observable<T> fromCache = Observable.create((ObservableOnSubscribe<T>) e -> {
+            T cache = (T) SPUtils.get(cacheKey,null);
+            if (cache != null) {
+                e.onNext(cache);
+            } else {
+                e.onComplete();
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        /**
+         * 这里的fromNetwork 不需要指定Schedule,在handleRequest中已经变换了
+         */
+        fromNetwork = fromNetwork.map(t -> {
+            SPUtils.put(cacheKey,t);
+            return t;
+        });
+        if (forceRefresh) {
+            return fromNetwork;
+        } else {
+            return Observable.concat(fromCache, fromNetwork);
+        }
+
+    }
 }

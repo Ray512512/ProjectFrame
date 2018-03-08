@@ -11,7 +11,7 @@
 //import android.widget.ImageView;
 //import android.widget.LinearLayout;
 //import android.widget.TextView;
-//import android.widget.Toast;
+//import android.widget.T;
 //
 //import com.luckytry.mipai.R;
 //import com.luckytry.mipai.base.ui.BaseActivity;
@@ -155,7 +155,7 @@
 //        vibrate();
 //        mQRCodeView.startSpot();
 //        if (result.equals("")) {
-//            Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
+//            T.makeText(CaptureActivity.this, "Scan failed!", T.LENGTH_SHORT).show();
 //        } else {
 //            L.v(TAG,result);
 //            ScanResultActivity.dealScanResult(this,result);
@@ -196,7 +196,7 @@
 //        @Override
 //        protected void onPostExecute(String result) {
 //            if (TextUtils.isEmpty(result)) {
-//                Toast.makeText(CaptureActivity.this, "未发现二维码", Toast.LENGTH_SHORT).show();
+//                T.makeText(CaptureActivity.this, "未发现二维码", T.LENGTH_SHORT).show();
 //            } else {
 //                onScanQRCodeSuccess(result);
 //            }
