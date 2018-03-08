@@ -1,0 +1,13 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">>
+    <string name="app_name">Library</string>
+    <string name="cancel">取消</string>
+    <string name="sure">确认</string>
+
+    <string name="choice_other">选择其他</string>
+    <string name="choice_default">选择默认</string>
+    <string name="next_time">下次再说</string>
+    <string name="update_now">现在更新</string>
+    <string name="dialog_title_hint">温馨提示</string>
+    <string name="content_choice_client"><Data><![CDATA[<font color="#626262">您好：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前定位默认餐机为</font>
+    <font color="#83DC3B">%s</font> <font color="#626262">您也可以选择其他位置餐机，祝您购物愉快~</font>]]></Data></string>
+</resources>

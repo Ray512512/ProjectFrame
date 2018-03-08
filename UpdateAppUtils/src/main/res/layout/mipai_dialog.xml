@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+
+    <LinearLayout
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_dialog_confirm">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="@drawable/bg_dialog_top">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/dialog_logo"
+            android:src="@drawable/update_logo"/>
+
+        <View
+            android:layout_toRightOf="@+id/dialog_logo"
+            android:id="@+id/dialog_line"
+            android:layout_width="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_height="25dp"
+            android:background="@color/white"/>
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:lines="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:id="@+id/dialog_confirm_title"
+            android:text="发现新版本2.0"
+            android:textColor="@color/white"
+            />
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/dialog_confirm_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/text_black"
+        />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:clickable="true"
+            android:id="@+id/dialog_confirm_cancle"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="@string/next_time"
+            android:background="@drawable/btn_cancle"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:clickable="true"
+            android:id="@+id/dialog_confirm_sure"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_action"
+            android:layout_height="40dp"
+            android:text="@string/update_now"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</LinearLayout>
