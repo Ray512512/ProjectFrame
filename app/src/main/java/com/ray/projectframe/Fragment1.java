@@ -1,10 +1,9 @@
 package com.ray.projectframe;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.ray.projectframe.base.ui.BaseFragment;
+import com.ray.library.base.ui.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,8 +38,8 @@ public class Fragment1 extends BaseFragment {
     @Override
     protected void initView(View view) {
         ButterKnife.bind(this,view);
-        txt.setText(this.getClass().getSimpleName());
-        txt.setOnClickListener(v -> startActivity(new Intent(mContext, DemoActivity.class)));
+//        txt.setText(this.getClass().getSimpleName());
+//        txt.setOnClickListener(v -> startActivity(new Intent(mContext, DemoActivity.class)));
     }
 
 

@@ -3,13 +3,15 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'me.tatarka:gradle-retrolambda:3.6.1'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -21,6 +23,7 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
         mavenCentral()
+        google()
     }
 }
 
@@ -29,11 +32,12 @@ allprojects {
     }
 
     ext {
-        compileSdkVersion = 25
-        buildToolsVersion = '25.0.2'
+        compileSdkVersion = 26
+        buildToolsVersion = '26.1.0'
+        butterknifeVersion = '8.5.1'
         minSdkVersion = 16
         targetSdkVersion = compileSdkVersion
-        supportLibVersion = '25.3.1'
+        supportLibVersion = '26.1.0'
         versionCode = 1
         versionName = '1.0.0'
     }

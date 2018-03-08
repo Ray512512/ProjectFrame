@@ -3,8 +3,9 @@ package com.ray.projectframe.greendao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.ray.projectframe.gen.DaoMaster;
-import com.ray.projectframe.gen.DaoSession;
+import com.ray.library.bean.DaoMaster;
+import com.ray.library.bean.DaoSession;
+
 
 /**
  * Created by ray on 2017/6/22.

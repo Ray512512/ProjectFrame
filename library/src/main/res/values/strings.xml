@@ -1,0 +1,46 @@
+<resources>
+    <!--<string name="app_name">library</string>-->
+
+    <string name="mis_folder_all">所有照片</string>
+    <string name="mis_preview">预览</string>
+    <string name="mis_msg_no_camera">没有系统相机</string>
+    <string name="mis_msg_amount_limit">已经达到最高选择数量</string>
+    <string name="mis_action_done">完成</string>
+    <string name="mis_photo_unit">张</string>
+    <string name="mis_tip_take_photo">拍摄照片</string>
+    <string name="mis_error_image_not_exist">图片错误</string>
+    <string name="mis_error_no_permission">无权限</string>
+    <string name="mis_permission_dialog_title">权限拒绝</string>
+    <string name="mis_permission_dialog_ok">好</string>
+    <string name="mis_permission_dialog_cancel">拒绝</string>
+    <string name="mis_permission_rationale">浏览图片需要您提供浏览存储的权限</string>
+    <string name="mis_permission_rationale_write_storage">保存拍照图片需要您提供写存储权限</string>
+    <string name="alertdialog_title">提示</string>
+
+    <string name="listview_loading">正在加载&#8230;</string>
+    <string name="no_content">啊哦，出错了</string>
+    <string name="you_can_try">你可以尝试</string>
+    <string name="reload">重新加载</string>
+    <string name="xlistview_header_hint_normal">下拉可以刷新</string>
+    <string name="xlistview_header_hint_ready">松开立即刷新</string>
+    <string name="xlistview_header_hint_loading">正在刷新数据中...</string>
+    <string name="xlistview_header_last_time">最后更新：</string>
+    <string name="xlistview_footer_hint_normal">上拉可以加载更多</string>
+    <string name="xlistview_footer_hint_ready">松开立即加载更多</string>
+    <string name="xlistview_footer_hint_loading">正在加载更多的数据...</string>
+    <string name="net_error">网络不可用</string>
+    <string name="net_failed">请求失败，请稍后再试...</string>
+    <string name="mine_item_about_us">关于我们</string>
+    <string name="token_error">token验证失败</string>
+
+
+    <string name="notifyTitle">提示</string>
+    <string name="take_over">完成</string>
+    <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+    <string name="setting">设置</string>
+    <string name="cancel">退出</string>
+    <string name="quit_ask">再点击一次退出应用</string>
+
+    <string name="mis_action_button_string">%1$s(%2$d/%3$d)</string>
+
+</resources>

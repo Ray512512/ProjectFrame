@@ -1,34 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#59b0ff</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-
-    <color name="background_color">#F0F0F0</color>
-    <color name="transparent">#00000000</color>
-    <color name="half_transparent">#88000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="yellow">#FFFF00</color>
-    <color name="black">#000000</color>
-    <color name="red">#E93E45</color>
-    <color name="gray">#B7B7B7</color>
-    <color name="blue">#59b0ff</color>
-    <color name="blue_dark">#428bca</color>
-
-    <color name="line_color">#D3D3D3</color>
-    <color name="colorTitleText">#666666</color>
-    <color name="colorTabText">#898989</color>
-    <color name="colorBgAll">#eeeeee</color><!-- 所有背景颜色 -->
-    <color name="cyan">#00BCD4</color>
-    <color name="transparency">#00000000</color>
-    <color name="colorYellow">#F09C61</color>
-
-
-    <color name="mainColor">#00BCD4</color>
-    <color name="ripple_press">#636060</color>
-    <color name="pressColor">#32f1f1f1</color>
-    <color name="green">#02B890</color>
-    <color name="main_dark">#91e2d0</color>
-    <color name="mis_actionbar_color">#21282C</color>
 
 </resources>

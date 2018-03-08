@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:widget="http://schemas.android.com/apk/res-auto"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:id="@+id/tv_test"
+     />
+
+    <!--<com.varunest.sparkbutton.SparkButton
+        android:id="@+id/spark_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        app:sparkbutton_activeImage="@mipmap/user1"
+        app:sparkbutton_inActiveImage="@mipmap/user2"
+        app:sparkbutton_primaryColor="@color/green"
+        app:sparkbutton_secondaryColor="@color/main_dark"
+        app:sparkbutton_iconSize="40dp" />-->
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加"
+        android:id="@+id/add"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除"
+        android:id="@+id/delete"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更新"
+        android:id="@+id/update"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查询"
+        android:id="@+id/query"/>
+</LinearLayout>
+    <com.ray.library.view.view.listview.HorizontalListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h_listview"
+        widget:dividerWidth="5dp"
+        android:visibility="gone"
+        />
+
+    <!--具体属性//https://github.com/lygttpod/SuperTextView-->
+  <!--  <com.allen.library.SuperTextView
+        android:id="@+id/super_tv"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        stv:sLeftBottomTextColor2="@color/colorAccent"
+        stv:sLeftBottomTextString="招商银行（8888）"
+        stv:sLeftBottomTextString2="限额说明>>"
+        stv:sLeftIconRes="@mipmap/ic_launcher"
+        stv:sLeftTopTextString="银行卡支付"
+        stv:sLineShow="bottom"
+        />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选图"
+        android:id="@+id/seletor_pic"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="拍照"
+        android:id="@+id/take_photo"/>
+
+    <ImageView
+        android:id="@+id/img_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        </LinearLayout>
+</LinearLayout>

@@ -1,19 +1,22 @@
 package com.ray.projectframe;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.ray.projectframe.base.ui.BottomTabBaseActivity;
-import com.ray.projectframe.base.view.BottomTabView;
+import com.ray.library.base.ui.BottomTabBaseActivity;
+import com.ray.library.base.view.BottomTabView;
+import com.ray.library.utils.AppManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BottomTabBaseActivity {
+    List<BottomTabView.TabItemView> tabItemViews = new ArrayList<>();
 
     @Override
     protected List<BottomTabView.TabItemView> getTabViews() {
-        List<BottomTabView.TabItemView> tabItemViews = new ArrayList<>();
         tabItemViews.add(new BottomTabView.TabItemView(this, "标题1", R.color.colorPrimary,
                 R.color.colorAccent, R.mipmap.ic_launcher, R.mipmap.ic_launcher_round));
         tabItemViews.add(new BottomTabView.TabItemView(this, "标题2", R.color.colorPrimary,
@@ -35,6 +38,10 @@ public class MainActivity extends BottomTabBaseActivity {
         return fragments;
     }
 
+    public static void start(Context context){
+        context.startActivity(new Intent(context,MainActivity.class));
+        AppManager.getInstance(FrameApplication.getInstance()).finishActivityExceptMain();
+    }
 
     @Override
     protected void initPresenter() {

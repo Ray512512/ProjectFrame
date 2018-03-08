@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_height="match_parent">
+
+    <com.ray.library.view.view.viewpager.LimitViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_weight="1000"
+        android:layout_height="0dp">
+
+    </com.ray.library.view.view.viewpager.LimitViewPager>
+    <View
+        android:layout_width="match_parent"
+        android:background="#c7c7c7"
+        android:layout_height="0.1dp"/>
+
+    <com.ray.library.base.view.BottomTabView
+        android:id="@+id/bottomTabView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </com.ray.library.base.view.BottomTabView>
+
+</LinearLayout>

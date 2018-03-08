@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="net_error">网络不可用</string>
-    <string name="net_failed">请求失败，请稍后再试...</string>
-
-</resources>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+
+    <declare-styleable name="ProgressWheel">
+        <attr name="progressIndeterminate" format="boolean" />
+        <attr name="barColor" format="color" />
+        <attr name="rimColor" format="color" />
+        <attr name="rimWidth" format="dimension" />
+        <attr name="spinSpeed" format="float" />
+        <attr name="barSpinCycleTime" format="integer" />
+        <attr name="circleRadius" format="dimension" />
+        <attr name="fillRadius" format="boolean" />
+        <attr name="barWidth" format="dimension" />
+        <attr name="linearProgress" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="MyRadioButton">
+        <attr name="rbDrawableTopSize" format="dimension"/>
+        <attr name="rbDrawableTop" format="reference"/>
+    </declare-styleable>
+
+    <!--bannerView-->
+    <declare-styleable name="BannerLayoutStyle">
+        <attr name="selectedIndicatorColor" format="color|reference" />
+        <attr name="unSelectedIndicatorColor" format="color|reference" />
+        <attr name="indicatorShape" format="enum">
+            <enum name="rect" value="0" />
+            <enum name="oval" value="1" />
+        </attr>
+
+        <attr name="selectedIndicatorHeight" format="dimension|reference" />
+        <attr name="selectedIndicatorWidth" format="dimension|reference" />
+
+        <attr name="unSelectedIndicatorHeight" format="dimension|reference" />
+        <attr name="unSelectedIndicatorWidth" format="dimension|reference" />
+
+        <attr name="indicatorPosition" format="enum">
+            <enum name="centerBottom" value="0" />
+            <enum name="rightBottom" value="1" />
+            <enum name="leftBottom" value="2" />
+            <enum name="centerTop" value="3" />
+            <enum name="rightTop" value="4" />
+            <enum name="leftTop" value="5" />
+        </attr>
+
+        <attr name="indicatorSpace" format="dimension|reference" />
+        <attr name="indicatorMargin" format="dimension|reference" />
+        <attr name="autoPlayDuration" format="integer|reference" />
+        <attr name="scrollDuration" format="integer|reference" />
+        <attr name="isAutoPlay" format="boolean" />
+        <attr name="defaultImage" format="integer|reference" />
+        <attr name="imageHeight" format="dimension|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="roundedimageview">
+        <attr name="border_thickness" format="dimension" />
+        <attr name="border_inside_color" format="color" />
+        <attr name="border_outside_color" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalListView">
+        <attr name="dividerWidth" format="dimension" />
+        <attr name="android:divider" />
+        <attr name="android:requiresFadingEdge" />
+        <attr name="android:fadingEdgeLength" />
+    </declare-styleable>
+
+
+    <declare-styleable name="SmoothCheckBox">
+        <!-- 动画持续时间 -->
+        <attr name="duration" format="integer"/>
+        <!-- 边框宽度 -->
+        <attr name="strikeWidth" format="dimension|reference"/>
+        <!--未选中颜色-->
+        <attr name="untrimColor" format="color|reference"/>
+        <!-- 选中状态的颜色 -->
+        <attr name="trimColor" format="color|reference"/>
+        <!-- 对勾颜色 -->
+        <attr name="tickColor" format="color|reference"/>
+        <!-- 对勾宽度 -->
+        <attr name="tickWidth" format="dimension|reference"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="SwitchButton">
+        <attr name="bmWidth" format="dimension"/>
+        <attr name="bmHeight" format="dimension"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="FlowLayout">
+        <!-- 标签之间的水平间距 -->
+        <attr name="fl_horizontalChildGap" format="dimension" />
+        <!-- 标签之间的垂直间距 -->
+        <attr name="fl_verticalChildGap" format="dimension" />
+        <!-- 是否平均分配每一行的剩余水平方向的空白区域给该行的标签 -->
+        <attr name="fl_isDistributionWhiteSpacing" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="LeanTextView">
+        <attr name="degree" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ViewPagerTitle">
+        <attr name="background_content_color" format="color|reference"/>
+        <attr name="line_start_color" format="color|reference"/>
+        <attr name="line_end_color" format="color|reference"/>
+        <attr name="defaultTextViewColor" format="color|reference"/>
+        <attr name="selectedTextViewColor" format="color|reference"/>
+        <attr name="defaultTextViewSize" format="dimension" />
+        <attr name="selectedTextViewSize" format="dimension" />
+        <attr name="item_margins" format="dimension|reference" />
+        <attr name="line_height" format="dimension|reference" />
+    </declare-styleable>
+</resources>
