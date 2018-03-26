@@ -12,6 +12,7 @@ import com.ray.library.bean.User;
 import com.ray.library.rxjava.RxHelper;
 import com.ray.library.rxjava.RxRetrofitCache;
 import com.ray.library.rxjava.RxSubscribe;
+import com.ray.library.rxjava.util.RxInterface;
 import com.ray.library.rxjava.util.RxManager;
 import com.ray.library.utils.SPUtils;
 import com.ray.library.utils.SystemUtil;
@@ -182,12 +183,20 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
         Observable<CharSequence> nameObservable = RxTextView.textChanges(name).skip(1);
         Observable<CharSequence> ageObservable = RxTextView.textChanges(age).skip(1);
         Observable<CharSequence> jobObservable = RxTextView.textChanges(job).skip(1);
-        Observable.combineLatest(nameObservable,ageObservable,jobObservable, (charSequence, charSequence2, charSequence3) -> {
-            boolean isUserNameValid = !TextUtils.isEmpty(name.getText()) ;
-            boolean isUserAgeValid = !TextUtils.isEmpty(age.getText());
-            boolean isUserJobValid = !TextUtils.isEmpty(job.getText()) ;
-            return isUserNameValid && isUserAgeValid && isUserJobValid;
-        }).subscribe(s -> Log.e(TAG, "提交按钮是否可点击： "+s));
+
+        RxManager.combineLatest(new RxInterface.combineLatest() {
+            @Override
+            public boolean getResult() {
+                boolean isUserNameValid = !TextUtils.isEmpty(name.getText()) ;
+                boolean isUserAgeValid = !TextUtils.isEmpty(age.getText());
+                boolean isUserJobValid = !TextUtils.isEmpty(job.getText()) ;
+                return isUserNameValid && isUserAgeValid && isUserJobValid;
+            }
+            @Override
+            public void action(boolean b) {
+                Log.e(TAG, "提交按钮是否可点击： "+b);
+            }
+        },nameObservable,ageObservable,jobObservable);
 
         /**
          * 9.功能防抖

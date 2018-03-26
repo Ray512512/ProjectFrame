@@ -53,20 +53,10 @@ public class RxManager {
      * @param callback
      * @param observables
      */
-    /*@SafeVarargs
-    public static void submit(RxInterface.intervalCombineLatest callback, Observable ... observables){
-        Observable.combineLatest(observables, new Function<Object[], Boolean>() {
-            @Override
-            public Boolean apply(Object[] objects) throws Exception {
-                return callback.getResult();
-            }
-        }).subscribe(new Consumer() {
-            @Override
-            public void accept(Object b) throws Exception {
-                callback.action(b);
-            }
-        });
-    }*/
+    @SafeVarargs
+    public static <T> void combineLatest(RxInterface.combineLatest callback, Observable<T> ... observables){
+        Observable.combineLatest(observables, objects -> callback.getResult()).subscribe(callback::action);
+    }
 
     /**
      * 防抖功能

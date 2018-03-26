@@ -4,5 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <EditText android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/test_et1"/>
 
+    <EditText android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/test_et2"/>
+    <EditText android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/test_et3"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:id="@+id/test_btn_submit"/>
 </LinearLayout>

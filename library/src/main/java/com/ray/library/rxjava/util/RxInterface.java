@@ -23,7 +23,7 @@ public class RxInterface {
     }
 
     //联合判断
-    public  interface intervalCombineLatest{
+    public  interface combineLatest {
         boolean getResult();
         void action(boolean b);
     }
