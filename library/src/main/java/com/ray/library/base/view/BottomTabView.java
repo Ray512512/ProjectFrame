@@ -18,6 +18,8 @@ import com.ray.library.utils.AnimaUtil;
 
 import java.util.List;
 
+import multiitem.animation.ScaleInAnimation;
+
 
 /**
  * Created by 陈序员 on 2017/4/28.
@@ -106,7 +108,7 @@ public class BottomTabView extends LinearLayout {
                     }else {
                         tabItemViews.get(0).findViewById(R.id.tvTitle).setVisibility(VISIBLE);
                     }
-                    AnimaUtil.startAnima(v,new com.freelib.multiitem.animation.ScaleInAnimation());
+                    AnimaUtil.startAnima(v,new ScaleInAnimation());
                     updatePosition(finalI);
 
                     if (onTabItemSelectListener != null){

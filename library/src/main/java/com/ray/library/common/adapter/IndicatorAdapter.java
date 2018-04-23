@@ -8,12 +8,13 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.ray.library.R;
 
-import net.lucode.hackware.magicindicator.buildins.UIUtil;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
+
+import magicindicator.buildins.UIUtil;
+import magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
+import magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
+import magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
+import magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
+import magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
 
 import static com.ray.library.common.adapter.IndicatorAdapter.IndicatorType.Order;
 

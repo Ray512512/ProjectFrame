@@ -2,35 +2,105 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'me.tatarka.retrolambda'
-
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+// This is the library version used when deploying the artifact
+version = "0.0.1"
 android {
     compileSdkVersion 26
 
-
-
+    resourcePrefix "mvpLib_"    //这个随便填
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
-
+        versionName version
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    dataBinding {
+        enabled = true
+    }
 }
-
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.nineoldandroids:library:2.4.0+'
+}
+def siteUrl = 'https://github.com/Ray512512/ProjectFrame' // 项目的主页
+def gitUrl = 'https://github.com/Ray512512/ProjectFrame.git' // Git仓库的url
+group = "com.ray.projectframe" // Maven Group ID for the artifact，一般填你唯一的包名
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // Add your description here
+                name 'Android MVP Lib' //项目描述
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'ray'    //填写的一些基本信息
+                        name 'MvpLib'
+                        email '1452011874@qq.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "MvpLib"    //发布到JCenter上的项目名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -38,9 +108,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile project(':multitem')
-    compile project(':magicindicator')
-    compile project(':UpdateAppUtils')
+    compile 'com.android.support:support-annotations:24.1.1'
+    compile 'com.liulishuo.filedownloader:library:1.6.8'
 
     //v7 兼容包
     compile "com.android.support:design:$supportLibVersion"

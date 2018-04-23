@@ -38,4 +38,8 @@
     <color name="mainhalfColor">#8083DC3B</color>
     <color name="mainColor_press">#8088DD88</color>
 
+
+    <color name="text_blue">#0076FF</color>
+    <color name="text_black">#333333</color>
+
 </resources>

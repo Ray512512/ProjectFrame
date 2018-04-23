@@ -7,7 +7,8 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 
-import com.freelib.multiitem.animation.BaseAnimation;
+import multiitem.animation.BaseAnimation;
+
 
 /**
  * Created by Administrator on 2016/1/20.

@@ -11,6 +11,8 @@ buildscript {
         classpath 'me.tatarka:gradle-retrolambda:3.6.1'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        //这里是依赖的插件类型路径，用最新的即可
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -24,6 +26,10 @@ allprojects {
         maven { url "https://jitpack.io" }
         mavenCentral()
         google()
+    }
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
     }
 }
 

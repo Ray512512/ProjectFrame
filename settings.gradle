@@ -1,1 +1,1 @@
-include ':app', ':library', ':multitem', ':magicindicator', ':UpdateAppUtils'
+include ':app', ':library'
