@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
@@ -47,6 +48,14 @@ public class RxManager {
         });
     }
 
+    /**
+     * 延时任务
+     * @param delayed 延迟时间
+     * @param callback  回调action
+     */
+    public static void delay(long delayed,RxInterface.delayed callback){
+        Observable.timer(delayed,TimeUnit.SECONDS).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(aLong -> callback.action());
+    }
 
     /**
      * 联合判断，当满足所有条件时决定行为

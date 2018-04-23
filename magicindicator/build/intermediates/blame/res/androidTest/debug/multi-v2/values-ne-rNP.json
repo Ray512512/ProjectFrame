@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\workplace\\ProjectFrame\\magicindicator\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ne-rNP\\values-ne-rNP.xml",
+            "outputFile": "D:\\work\\ProjectFrame\\magicindicator\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ne-rNP\\values-ne-rNP.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\9825d82cd30bff2da8cceeed5cd0c82e\\res\\values-ne-rNP\\values-ne-rNP.xml",
+                    "source": "C:\\Users\\14520\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\953572927bfe61c64820730df9115818\\res\\values-ne-rNP\\values-ne-rNP.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

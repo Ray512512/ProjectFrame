@@ -21,7 +21,7 @@ public class SplashActivity extends CheckPermissionsActivity {
     public void start(String  s) {
 //        if(s.equals("0")) SPUtils.put(Constant.SP_KEY.IS_FIRST_LAUNCH,false,SPUtils.getCommonSp());
         new Handler().postDelayed(() -> {
-            TestActivity.start(this);
+            MainActivity.start(this);
             finish();
         }, Integer.parseInt(s));
     }

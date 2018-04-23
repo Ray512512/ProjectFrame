@@ -1,35 +1,35 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
+ADDED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
 	package
-		ADDED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:11-55
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		ADDED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:11-55
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-		ADDED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		ADDED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-		ADDED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		ADDED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml:1:1-58
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
 uses-sdk
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-		ADDED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		ADDED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-		ADDED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
-		INJECTED from E:\workplace\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		ADDED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from D:\work\ProjectFrame\magicindicator\src\main\AndroidManifest.xml

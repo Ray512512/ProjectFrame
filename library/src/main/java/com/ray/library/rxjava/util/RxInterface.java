@@ -16,6 +16,11 @@ public class RxInterface {
          void action(long time);
     }
 
+  //延时执行
+    public interface delayed{
+        void action();
+    }
+
     //有条件轮训
     public  interface intervalInterface2{
          boolean isStop();
