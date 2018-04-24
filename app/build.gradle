@@ -44,7 +44,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(':library')
-//    compile 'com.ray.projectframe:library:0.0.1'
+//    compile 'com.ray:library:0.0.1'
 //    //butterknife
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
