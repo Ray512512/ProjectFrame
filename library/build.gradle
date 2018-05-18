@@ -4,18 +4,18 @@ apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.novoda.bintray-release'//添加
 
+version = "0.0.2"
 //添加
 publish {
     userOrg = 'pulei512'//bintray.com用户名
     groupId = 'com.ray'//jcenter上的路径
     artifactId = 'mvplib'//项目名称
-    publishVersion = '0.0.1'//版本号
+    publishVersion = version//版本号
     desc = 'mvplib'//描述，不重要
     website = 'https://github.com/Ray512512/ProjectFrame'//网站，最好有，不重要
 }
 
 // This is the library version used when deploying the artifact
-version = "0.0.1"
 android {
     compileSdkVersion 26
 
@@ -45,6 +45,7 @@ android {
     }
 
 }
+
 
 greendao {
     schemaVersion 1
@@ -82,7 +83,7 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     //网络框架
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'

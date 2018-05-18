@@ -24,6 +24,7 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
         mavenCentral()
+        maven { url "https://dl.bintray.com/pulei512/maven" }
         google()
     }
     tasks.withType(Javadoc) {
