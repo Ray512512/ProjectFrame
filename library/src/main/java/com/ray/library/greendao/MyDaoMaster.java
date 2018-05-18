@@ -1,10 +1,10 @@
-package com.ray.projectframe.greendao;
+package com.ray.library.greendao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.ray.library.bean.DaoMaster;
-import com.ray.library.bean.DaoSession;
+import com.ray.gen.DaoMaster;
+import com.ray.gen.DaoSession;
 
 
 /**

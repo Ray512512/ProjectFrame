@@ -46,6 +46,11 @@ android {
 
 }
 
+greendao {
+    schemaVersion 1
+    daoPackage 'com.ray.gen'
+    targetGenDir 'src/main/java'
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

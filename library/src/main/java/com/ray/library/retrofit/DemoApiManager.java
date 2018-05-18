@@ -14,11 +14,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Ray on 2017/5/7.
  * email：1452011874@qq.com
  */
-public class ApiManager {
+public class DemoApiManager {
     public static final String ROOT_URL = "http://wififan.zhikenet.com/";
-    private static ApiService mApiService;
+    private static DemoApiService mApiService;
 
-    public static ApiService getInstance() {
+    public static DemoApiService getInstance() {
         if (mApiService == null) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -33,10 +33,9 @@ public class ApiManager {
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
-                    .create(ApiService.class);
+                    .create(DemoApiService.class);
         }
         return mApiService;
     }
-
 
 }

@@ -164,18 +164,18 @@ public class DemoActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.add:
-                User mUser = new User((long) 2, "媳妇");
+                DemoUser mUser = new DemoUser((long) 2, "媳妇");
                 mUserDao.insert(mUser);//添加一个
                 break;
             case R.id.delete:
                 mUserDao.deleteByKey((long) 2);
                 break;
             case R.id.update:
-                mUserDao.update(new User((long) 2, "蒲蒲"));
+                mUserDao.update(new DemoUser((long) 2, "蒲蒲"));
                 break;
             case R.id.query:
-                User s = mUserDao.queryBuilder().where(UserDao.Properties.Name.eq("蒲蒲")).unique();
-//                User s=mUserDao.load((long) 2);
+                DemoUser s = mUserDao.queryBuilder().where(UserDao.Properties.Name.eq("蒲蒲")).unique();
+//                DemoUser s=mUserDao.load((long) 2);
                 tvTest.setText(s == null ? "暂无此用户" : s.getName());
                 break;
             case R.id.seletor_pic:

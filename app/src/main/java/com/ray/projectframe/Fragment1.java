@@ -14,13 +14,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import tyrantgit.widget.HeartLayout;
 
-
-/**
- * Created by 陈序员 on 2017/5/3.
- * Email: Matthew_Chen_1994@163.com
- * Blog: https://blog.ifmvo.cn
- */
-
 public class Fragment1 extends BaseFragment {
 
     @BindView(R.id.txt)
@@ -54,6 +47,7 @@ public class Fragment1 extends BaseFragment {
             }
 //            mHeartLayout.addHeart(randomColor());
         });
+
     }
 
     private boolean isRun=false;

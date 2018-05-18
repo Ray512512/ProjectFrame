@@ -22,8 +22,8 @@ import org.greenrobot.greendao.annotation.Transient;
  (八) @Transient 不存储在数据库中
  (九) @generated 由greendao产生的构造函数或方法
  * */
-@Entity
-public class User {
+//@Entity
+public class DemoUser {
     @Id
     private Long id;
     @Property(nameInDb = "USERNAME")
@@ -43,15 +43,15 @@ public class User {
         this.id = id;
     }
     @Generated(hash = 873297011)
-    public User(Long id, String name) {
+    public DemoUser(Long id, String name) {
         this.id = id;
         this.name = name;
     }
     @Generated(hash = 586692638)
-    public User() {
+    public DemoUser() {
     }
 
-    public User(String name) {
+    public DemoUser(String name) {
         this.name = name;
     }
 }

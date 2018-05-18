@@ -18,8 +18,8 @@ import com.ray.projectframe.R;
 import com.ray.projectframe.base.mvp.BaseIView;
 import com.ray.projectframe.base.mvp.BasePresenter;
 import com.ray.projectframe.common.ConstantField;
-import com.ray.library.retrofit.ApiManager;
-import com.ray.library.retrofit.ApiService;
+import com.ray.library.retrofit.DemoApiManager;
+import com.ray.library.retrofit.DemoApiService;
 import com.ray.projectframe.rxbus.RxBus;
 import com.ray.projectframe.ui.viewhelper.VaryViewHelper;
 import com.ray.projectframe.utils.AppManager;
@@ -33,14 +33,14 @@ public abstract class TopBarBaseActivity<P extends BasePresenter>   extends AppC
     FrameLayout viewContent;
 
     public Context mContext;
-    public ApiService mApiService;
+    public DemoApiService mApiService;
     protected P mPresenter;
     protected VaryViewHelper mVaryViewHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        mApiService= ApiManager.getInstance();
+        mApiService= DemoApiManager.getInstance();
         AppManager.getInstance(mContext).addActivity(this);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

@@ -3,7 +3,7 @@ package com.ray.projectframe;
 import com.ray.library.BaseApplication;
 import com.ray.library.common.Constant;
 import com.ray.library.utils.SystemUtil;
-import com.ray.projectframe.greendao.MyDaoMaster;
+import com.ray.library.greendao.MyDaoMaster;
 
 /**
  * Created by Ray on 2017/5/16.
