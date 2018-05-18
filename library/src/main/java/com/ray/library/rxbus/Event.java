@@ -8,12 +8,8 @@ package com.ray.library.rxbus;
 public class Event {
 
     public final static class TAG{
-        public static final String TEXT="text";
         public static final String START_APP="start_app";
 
     }
 
-    public final static class DemoEvent{
-
-    }
 }

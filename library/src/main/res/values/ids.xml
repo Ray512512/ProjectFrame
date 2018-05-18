@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
     <item name="adapter_item_tag_key" type="id" />
     <item name="fab_label" type="id"/>
 
