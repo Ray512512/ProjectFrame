@@ -17,6 +17,7 @@ import com.ray.library.R;
 import com.ray.library.base.mvp.BasePresenter;
 import com.ray.library.rxbus.Event;
 import com.ray.library.rxbus.RxBus;
+import com.ray.library.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +33,10 @@ import java.util.List;
  * @类型名称：PermissionsChecker
  * @since 2.5.0
  */
-public class CheckPermissionsActivity<P extends BasePresenter> extends BaseActivity
-		implements
-			ActivityCompat.OnRequestPermissionsResultCallback {
+public abstract class CheckPermissionsActivity<P extends BasePresenter> extends BaseActivity
+		implements ActivityCompat.OnRequestPermissionsResultCallback {
 
 	protected P mPresenter;
-	protected boolean isPass=false;
 	/**
 	 * 需要进行检测的权限数组
 	 */
@@ -56,10 +55,17 @@ public class CheckPermissionsActivity<P extends BasePresenter> extends BaseActiv
 	 */
 	private boolean isNeedCheck = true;
 
-	@Override
-	protected int inflateContentView() {
-		return 0;
-	}
+	/**
+	 * 获取需要检测的权限列表，返回null默认检测SD卡读写权限
+	 * @return
+	 */
+	protected abstract String[]  getPermissions();
+
+	/**
+	 * 权限检测通过 可以启动APP
+	 */
+	protected abstract void  startApp();
+
 
 	@Override
 	protected void initPresenter() {
@@ -73,13 +79,18 @@ public class CheckPermissionsActivity<P extends BasePresenter> extends BaseActiv
 
 	@Override
 	protected void initEvents() {
-
+		String [] s=getPermissions();
+        if(s!=null){
+			needPermissions=s;
+		}
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		if(isNeedCheck){
+			L.v("","待检测的权限个数："+needPermissions.length);
+			if(needPermissions.length!=0)
 			checkPermissions(needPermissions);
 		}
 	}
@@ -99,7 +110,8 @@ public class CheckPermissionsActivity<P extends BasePresenter> extends BaseActiv
 							new String[needRequestPermissonList.size()]),
 					PERMISSON_REQUESTCODE);
 		}else {
-			RxBus.get().post(Event.TAG.START_APP,"2000");
+			startApp();
+//			RxBus.get().post(Event.TAG.START_APP,"2000");
 		}
 	}
 
@@ -145,14 +157,16 @@ public class CheckPermissionsActivity<P extends BasePresenter> extends BaseActiv
 				showMissingPermissionDialog();
 				isNeedCheck = false;
 			}else
-			RxBus.get().post(Event.TAG.START_APP,2000);
+				startApp();
+//			RxBus.get().post(Event.TAG.START_APP,2000);
 		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		RxBus.get().post(Event.TAG.START_APP,2000);
+		startApp();
+//		RxBus.get().post(Event.TAG.START_APP,2000);
 	}
 
 	/**
@@ -165,14 +179,10 @@ public class CheckPermissionsActivity<P extends BasePresenter> extends BaseActiv
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.notifyTitle);
 		builder.setMessage(R.string.notifyMsg);
-
 		// 拒绝, 退出应用
 		builder.setNegativeButton(R.string.cancel, (dialog, which) -> finish());
-
 		builder.setPositiveButton(R.string.setting, (dialog, which) -> startAppSettings());
-
 		builder.setCancelable(false);
-
 		builder.show();
 	}
 
@@ -189,5 +199,4 @@ public class CheckPermissionsActivity<P extends BasePresenter> extends BaseActiv
 	}
 	
 
-		
 }

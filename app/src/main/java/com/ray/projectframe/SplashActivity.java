@@ -12,17 +12,21 @@ public class SplashActivity extends CheckPermissionsActivity {
 
 
     @Override
+    protected String[] getPermissions() {
+        return null;
+    }
+
+    @Override
+    protected void startApp() {
+        new Handler().postDelayed(() -> {
+            MainActivity.start(this);
+            finish();
+        }, 2000);
+    }
+
+    @Override
     protected int inflateContentView() {
         return R.layout.activity_splash;
     }
 
-
-    @Subscribe(tags = {@Tag(Event.TAG.START_APP)})
-    public void start(String  s) {
-//        if(s.equals("0")) SPUtils.put(Constant.SP_KEY.IS_FIRST_LAUNCH,false,SPUtils.getCommonSp());
-        new Handler().postDelayed(() -> {
-            MainActivity.start(this);
-            finish();
-        }, Integer.parseInt(s));
-    }
 }
