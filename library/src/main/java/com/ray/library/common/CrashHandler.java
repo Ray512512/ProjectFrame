@@ -51,6 +51,26 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     private static CrashHandler mInstance;
 
+    private boolean isDebug=true;
+
+    public void setDebug(boolean debug) {
+        isDebug = debug;
+    }
+
+    /**
+     * 如果设置了异常回调则出异常后回调处理
+     * 否则退出应用程序
+     */
+    public interface exeCallBack{
+        void deal();
+    }
+
+    private exeCallBack callBack;
+
+    public void setCallBack(exeCallBack callBack) {
+        this.callBack = callBack;
+    }
+
     private CrashHandler() {
 
     }
@@ -65,7 +85,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         return mInstance;
     }
 
-    public void init(Context context){
+    public void init(Context context,boolean isDebug){
+        this.isDebug=isDebug;
         mContext = context;
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //设置该CrashHandler为系统默认的
@@ -85,8 +106,10 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             } catch (InterruptedException e) {
                 Log.e(TAG, "error : ", e);
             }
-            //退出程序
-            AppManager.getInstance(mContext).AppExit(mContext);
+            if(callBack==null) {
+                //退出程序
+                AppManager.getInstance(mContext).AppExit(mContext);
+            }else callBack.deal();
         }
 
     }
@@ -114,7 +137,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }.start();
         //保存日志文件
         saveCrashInfo2File(ex);
-        return false;
+        return !isDebug;
     }
 
 

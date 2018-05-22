@@ -40,7 +40,7 @@ public class MainActivity extends BottomTabBaseActivity {
 
     public static void start(Context context){
         context.startActivity(new Intent(context,MainActivity.class));
-        AppManager.getInstance(FrameApplication.getInstance()).finishActivityExceptMain();
+        AppManager.getInstance(context).finishActivityExceptMain();
     }
 
     @Override

@@ -12,14 +12,12 @@ import retrofit2.http.POST;
  * Created by ray on 17-5-10
  * Description:
  */
-public interface DemoApiService {
+public interface BaseApiService {
 
 
-    @POST("backstage/adsite/registerWifi.html")
-    Observable<BaseModel<DemoUser>> registerAndLogin();
+    @POST("backstage/adsite/registerWifi.do")
+    Observable<BaseModel<DemoUser>> register();
 
-    @POST("backstage/adsite/registerWifi.html")
-    Observable<BaseModel<Demo>> registerAndLogin2();
 }
 
 

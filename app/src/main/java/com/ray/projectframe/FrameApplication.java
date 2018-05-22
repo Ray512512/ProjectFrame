@@ -1,12 +1,10 @@
 package com.ray.projectframe;
 
 import com.ray.library.BaseApplication;
-import com.ray.library.common.Constant;
-import com.ray.library.retrofit.DemoApiManager;
+import com.ray.library.common.CrashHandler;
 import com.ray.library.utils.SystemUtil;
 import com.ray.library.greendao.MyDaoMaster;
-import com.ray.projectframe.api.Api;
-import com.ray.projectframe.api.ApiService;
+import com.ray.projectframe.common.Const;
 
 /**
  * Created by Ray on 2017/5/16.
@@ -20,6 +18,7 @@ public class FrameApplication extends BaseApplication {
         super.onCreate();
         String processName = SystemUtil.getProcessName(android.os.Process.myPid());
         if(!getPackageName().equals(processName))return;
-        MyDaoMaster.getInstance(this).init(Constant.DB_NAME);
+        CrashHandler.getInstance().init(this,true);
+        MyDaoMaster.getInstance(this).init(Const.DB_NAME);
     }
 }

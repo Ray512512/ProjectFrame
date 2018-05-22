@@ -3,8 +3,7 @@ package com.ray.library.base.mvp;
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.ray.library.retrofit.DemoApiManager;
-import com.ray.library.utils.T;
+import com.ray.library.retrofit.BaseApiManager;
 
 
 /**
@@ -19,7 +18,7 @@ public abstract class BasePresenter<I extends BaseIView> {
     public BasePresenter(Activity mContext, I mView) {
         this.mContext = mContext;
         this.mView = mView;
-        api= DemoApiManager.getInstance().getApi();
+        api= BaseApiManager.getInstance().getApi();
     }
 
 

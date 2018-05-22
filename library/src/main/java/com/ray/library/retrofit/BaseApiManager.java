@@ -5,6 +5,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -14,22 +15,29 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Ray on 2017/5/7.
  * email：1452011874@qq.com
  */
-public class DemoApiManager{
+public class BaseApiManager {
 
     public static  String ROOT_URL = "";
     private static Retrofit retrofit;
 
     /**
-     * 放到application中初始化
+     * 初始化api
      * @param apiServer
      * @param rootUrl
+     * @param interceptors 选择添加拦截器
+     * @param <T>
+     * @return
      */
-    public static <T> T init(Class<T> apiServer, String rootUrl){
+    public static <T> T init(Class<T> apiServer, String rootUrl, Interceptor...interceptors){
         if(retrofit==null) {
             ROOT_URL=rootUrl;
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+            OkHttpClient.Builder builder=new OkHttpClient.Builder();
+            for (Interceptor interceptor : interceptors) {
+                builder.addInterceptor(interceptor);
+            }
+            OkHttpClient okHttpClient = builder
                     .readTimeout(30, TimeUnit.SECONDS)
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .addInterceptor(logging)

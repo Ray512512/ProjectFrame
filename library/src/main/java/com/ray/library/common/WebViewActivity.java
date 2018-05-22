@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.ray.library.R;
 import com.ray.library.R2;
 import com.ray.library.base.ui.BaseActivity;
-import com.ray.library.retrofit.DemoApiManager;
+import com.ray.library.retrofit.BaseApiManager;
 import com.ray.library.utils.WebViewUtil;
 
 import butterknife.BindView;
@@ -66,7 +66,7 @@ public class WebViewActivity extends BaseActivity {
         }
         switch (type){
             case KEY_ABOUTUS:
-                url= DemoApiManager.ROOT_URL+ABOUT_US_URL;
+                url= BaseApiManager.ROOT_URL+ABOUT_US_URL;
                 tvTitle.setText(R.string.mine_item_about_us);
                 break;
         }

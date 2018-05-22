@@ -1,8 +1,6 @@
 package com.ray.library.utils;
 
 
-import com.ray.library.common.Constant;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -85,7 +83,7 @@ public class MD5Util {
 			String passWord = Des3Util.decryptFromHex(KEY, secret);
 			L.e("saveKey:——passWord"+passWord);
 			String key = passWord.split(",")[0];
-			SPUtils.put(Constant.SP_KEY.TOKEN_KEY,key, getCommonSp());
+			SPUtils.put("token_key",key, getCommonSp());
 			return key;
 		}
 
