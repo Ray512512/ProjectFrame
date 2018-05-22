@@ -8,7 +8,7 @@ import android.view.WindowManager;
 
 /**
  * 常规工具类
- * Created by 魏兴 on 2017/8/3.
+ * Created by Ray on 2017/8/3.
  */
 
 public class DeviceUtil {

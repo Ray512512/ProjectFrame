@@ -1,6 +1,7 @@
 package com.ray.library.common;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.ray.library.R;
 import com.ray.library.R2;
 import com.ray.library.rxjava.util.RxInterface;
 import com.ray.library.rxjava.util.RxManager;
+import com.ray.library.utils.AlertDialogUtil;
 import com.ray.library.utils.L;
 import com.ray.library.utils.T;
 
@@ -81,6 +83,14 @@ public class TestActivity extends AppCompatActivity {
                 TEST_NUM = time;
                 System.out.print("interval 2\t" + time);
             }
+        });
+    }
+
+    private void testDialog(){
+        AlertDialogUtil.AlertDialog(this, "message", "确定", "取消", (dialog, which) -> {
+             //PositiveButton listener
+        },(dialog, which) -> {
+            //NegativeButton listener
         });
     }
 }
