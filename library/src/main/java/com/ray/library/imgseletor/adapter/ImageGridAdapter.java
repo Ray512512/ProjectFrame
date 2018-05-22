@@ -231,7 +231,7 @@ public class ImageGridAdapter extends BaseAdapter {
                 // 显示图片
                 Glide.with(mContext).load(imageFile).placeholder(R.drawable.mis_default_error).override(mGridWidth,mGridWidth).centerCrop().error(errorDrawable).into(image);
               /*  Picasso.with(mContext)
-                        .load(imageFile)
+                        .init(imageFile)
                         .placeholder(R.drawable.mis_default_error)
                         .error(errorDrawable)
                         .tag(MultiImageSelectorFragment.TAG)

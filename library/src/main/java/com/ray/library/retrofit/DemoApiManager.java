@@ -14,12 +14,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Ray on 2017/5/7.
  * email：1452011874@qq.com
  */
-public class DemoApiManager {
-    public static final String ROOT_URL = "http://wififan.zhikenet.com/";
-    private static DemoApiService mApiService;
+public class DemoApiManager{
 
-    public static DemoApiService getInstance() {
-        if (mApiService == null) {
+    public static  String ROOT_URL = "";
+    private static Retrofit retrofit;
+
+    /**
+     * 放到application中初始化
+     * @param apiServer
+     * @param rootUrl
+     */
+    public static <T> T init(Class<T> apiServer, String rootUrl){
+        if(retrofit==null) {
+            ROOT_URL=rootUrl;
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -27,15 +34,19 @@ public class DemoApiManager {
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .addInterceptor(logging)
                     .build();
-            mApiService = new Retrofit.Builder()
+
+            retrofit=new Retrofit.Builder()
                     .client(okHttpClient)
-                    .baseUrl(ROOT_URL)
+                    .baseUrl(rootUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build()
-                    .create(DemoApiService.class);
+                    .build();
         }
-        return mApiService;
+        return retrofit.create(apiServer);
     }
 
+    public static  <T> T get(Class<T> apiServer) {
+       if(retrofit==null) throw new NullPointerException("请先初始化");
+        return retrofit.create(apiServer);
+    }
 }

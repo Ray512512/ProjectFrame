@@ -236,7 +236,7 @@ public class MultiImageView extends LinearLayout {
             }
         });
         // 加载网络图片/设置图片显示
-        GlideUtils.load(getContext(),url,imageView);
+        GlideUtils.init(getContext(),url,imageView);
         return imageView;
     }*/
 

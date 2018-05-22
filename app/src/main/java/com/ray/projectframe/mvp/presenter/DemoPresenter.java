@@ -10,6 +10,7 @@ import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.ray.library.base.mvp.BasePresenter;
 import com.ray.library.bean.DemoUser;
 import com.ray.library.retrofit.DemoApiManager;
+import com.ray.library.retrofit.DemoApiService;
 import com.ray.library.rxjava.RxHelper;
 import com.ray.library.rxjava.RxRetrofitCache;
 import com.ray.library.rxjava.RxSubscribe;
@@ -17,6 +18,8 @@ import com.ray.library.rxjava.util.RxInterface;
 import com.ray.library.rxjava.util.RxManager;
 import com.ray.library.utils.SPUtils;
 import com.ray.library.utils.SystemUtil;
+import com.ray.projectframe.api.Api;
+import com.ray.projectframe.api.ApiService;
 import com.ray.projectframe.mvp.view.LoginIView;
 
 import io.reactivex.Observable;
@@ -49,7 +52,8 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
         /**
          * 1.普通请求
          */
-        DemoApiManager.getInstance().registerAndLogin().compose(RxHelper.handleResult()).
+        ApiService api= Api.get();
+        api.registerAndLogin().compose(RxHelper.handleResult()).
                 subscribe(new RxSubscribe<DemoUser>(mContext,mView) {
                     @Override
                     public void _onNext(DemoUser demoUser) {
@@ -65,7 +69,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
         /**
          * 2.遇到异常重试请求
          */
-        DemoApiManager.getInstance().registerAndLogin().retryWhen(RxHelper.retryWhen()).compose(RxHelper.handleResult()).
+        api.registerAndLogin().retryWhen(RxHelper.retryWhen()).compose(RxHelper.handleResult()).
                 subscribe(new RxSubscribe<DemoUser>(mContext,mView) {
                     @Override
                     public void _onNext(DemoUser demoUser) {
@@ -81,7 +85,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
         /**
          * 3.轮询请求
          */
-        RxManager.interval(10, time -> DemoApiManager.getInstance().registerAndLogin().compose(RxHelper.handleResult()).
+        RxManager.interval(10, time -> api.registerAndLogin().compose(RxHelper.handleResult()).
                 subscribe(new RxSubscribe<DemoUser>(mContext,mView) {
                     @Override
                     public void _onNext(DemoUser demoUser) {
@@ -97,9 +101,9 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
          *4. 依次执行两个请求
          * 第二个请求需使用第一个请求的结果
          */
-        DemoApiManager.getInstance().registerAndLogin().compose(RxHelper.handleResult()).doOnNext(o -> {
+        api.registerAndLogin().compose(RxHelper.handleResult()).doOnNext(o -> {
              //第一次请求成功
-        }).flatMap(user -> DemoApiManager.getInstance().registerAndLogin()).compose(RxHelper.handleResult()).
+        }).flatMap(user -> api.registerAndLogin()).compose(RxHelper.handleResult()).
                 subscribe(new RxSubscribe<DemoUser>(mContext,mView) {
                     @Override
                     public void _onNext(DemoUser demoUser) {
@@ -125,7 +129,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
                 e.onComplete();
             }
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-        Observable.merge(fromCache, DemoApiManager.getInstance().registerAndLogin()).subscribe(new Observer<Object>() {
+        Observable.merge(fromCache, api.registerAndLogin()).subscribe(new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
 
@@ -150,7 +154,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
          * 6.合并两个请求结果后发送事件2
          * 实现较为复杂的合并2个网络请求向2个服务器获取数据 & 统一展示
          */
-        Observable.zip(DemoApiManager.getInstance().registerAndLogin(), DemoApiManager.getInstance().registerAndLogin(), (userBaseModel, userBaseModel2) ->
+        Observable.zip(api.registerAndLogin(), api.registerAndLogin(), (userBaseModel, userBaseModel2) ->
                 new DemoUser(userBaseModel.msg + userBaseModel2.msg)).observeOn(AndroidSchedulers.mainThread()) // 在主线程接收 & 处理数据
                 .subscribe(combine_infro -> {
                     // 结合显示2个网络请求的数据结果
@@ -163,7 +167,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
          * 7.组合两个不同来源的数据，优先使用本地数据（本地无数据才向网络获取）
          * 可控制是否强制获取网络数据
          */
-        RxRetrofitCache.load(mContext,"user",DemoApiManager.getInstance().registerAndLogin(),true).compose(RxHelper.handleResult()).
+        RxRetrofitCache.load(mContext,"user",api.registerAndLogin(),true).compose(RxHelper.handleResult()).
                 subscribe(new RxSubscribe<DemoUser>(mContext,mView) {
                     @Override
                     public void _onNext(DemoUser demoUser) {
