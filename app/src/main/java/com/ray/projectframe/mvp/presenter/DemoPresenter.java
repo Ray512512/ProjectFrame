@@ -183,7 +183,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
          * 8.联合判断
          * 提交按钮是否可点击
          */
-        EditText name=null,age=null,job=null;
+        EditText name=new EditText(mContext),age=new EditText(mContext),job=new EditText(mContext);
         //采用skip(1)原因：跳过 一开始EditText无任何输入时的空值
         Observable<CharSequence> nameObservable = RxTextView.textChanges(name).skip(1);
         Observable<CharSequence> ageObservable = RxTextView.textChanges(age).skip(1);
@@ -207,7 +207,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
          * 9.功能防抖
          * 2s内只会响应一次click
          */
-       RxManager.clicks(name, 2, () -> {
+       RxManager.clicks(name, 2000, () -> {
 
        });
 
@@ -216,7 +216,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
          * 自动搜索优化
          * 间隔时间达到固定值才能响应事件
          */
-        RxManager.autoSearch(name, 1, () -> {
+        RxManager.autoSearch(name, 1000, () -> {
 
         });
 

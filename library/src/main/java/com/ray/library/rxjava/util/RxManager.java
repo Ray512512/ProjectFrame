@@ -98,23 +98,25 @@ public class RxManager {
 
     /**
      * 防抖功能
+     * 单位为毫秒
      * @param view
      * @param time 防抖间隔
      * @param simple
      */
     public static Disposable clicks(View view,int time,RxInterface.simple simple){
-       return RxView.clicks(view).throttleFirst(time, TimeUnit.SECONDS).subscribe(o -> simple.action());
+       return RxView.clicks(view).throttleFirst(time, TimeUnit.MILLISECONDS).subscribe(o -> simple.action());
     }
 
     /**
      * 智能搜索优化
      * 防止短时间内连续搜索
+     * 单位为毫秒
      * @param view
      * @param time
      * @param simple
      */
     public static Disposable autoSearch(EditText view, int time, RxInterface.simple simple){
-       return RxTextView.textChanges(view).debounce(time,TimeUnit.SECONDS).skip(1)//跳过初始值空字符
+       return RxTextView.textChanges(view).debounce(time,TimeUnit.MILLISECONDS).skip(1)//跳过初始值空字符
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(charSequence -> simple.action());
     }
 

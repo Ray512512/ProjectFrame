@@ -59,7 +59,7 @@ public class TestActivity extends AppCompatActivity {
             }
         }, RxTextView.textChanges(testEt1),RxTextView.textChanges(testEt2),RxTextView.textChanges(testEt3));
 
-        RxManager.clicks(testBtnSubmit, 2, () -> {
+        RxManager.clicks(testBtnSubmit, 2000, () -> {
             T.show("submit");
             L.v(TAG,"submit");
         });
