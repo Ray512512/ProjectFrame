@@ -1,11 +1,13 @@
 package com.ray.projectframe.mvp.presenter;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.jakewharton.rxbinding2.view.RxView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.ray.library.base.mvp.BasePresenter;
 import com.ray.library.bean.DemoUser;
@@ -16,9 +18,11 @@ import com.ray.library.rxjava.util.RxInterface;
 import com.ray.library.rxjava.util.RxManager;
 import com.ray.library.utils.SPUtils;
 import com.ray.library.utils.SystemUtil;
+import com.ray.projectframe.R;
 import com.ray.projectframe.api.Api;
 import com.ray.projectframe.api.ApiService;
 import com.ray.projectframe.mvp.view.LoginIView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -218,7 +222,94 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
 
         });
 
+        /**
+         * RxPermission 单权限检测
+         */
+        RxPermissions rxPermissions = new RxPermissions(mContext);
+        rxPermissions.request(Manifest.permission.CAMERA)
+                .subscribe(granted -> {
+                    if (granted) {
+                        // I can control the camera now
+                    } else {
+                        // Oups permission denied
+                    }
+                });
+
+        /**
+         * RxPermissions 多权限检测
+         */
+        rxPermissions
+                .request(Manifest.permission.CAMERA,
+                        Manifest.permission.READ_PHONE_STATE)
+                .subscribe(granted -> {
+                    if (granted) {
+                        // All requested permissions are granted
+                    } else {
+                        // At least one permission is denied
+                    }
+                });
+
+        /**
+         * RxPermissions 结合Rxbinding 实现点击按钮自动权限检测响应
+         */
+        RxView.clicks(mContext.findViewById(R.id.ALT))
+                .compose(rxPermissions.ensure(Manifest.permission.CAMERA))
+                .subscribe(granted -> {
+                    // R.id.enableCamera has been clicked
+                });
+
+        /**
+         * 权限流程处理 两个请求同时处理
+         */
+        rxPermissions
+                .requestEach(Manifest.permission.CAMERA,
+                        Manifest.permission.READ_PHONE_STATE)
+                .subscribe(permission -> { // will emit 2 Permission objects
+                    if (permission.granted) {
+                        // `permission.name` is granted !
+                    } else if (permission.shouldShowRequestPermissionRationale) {
+                        // Denied permission without ask never again
+                    } else {
+                        // Denied permission with ask never again
+                        // Need to go to the settings
+                    }
+                });
+
+        /**
+         * 权限流程处理 两个请求分开处理
+         */
+        rxPermissions
+                .requestEachCombined(Manifest.permission.CAMERA,
+                        Manifest.permission.READ_PHONE_STATE)
+                .subscribe(permission -> { // will emit 1 Permission object
+                    if (permission.granted) {
+                        // All permissions are granted !
+                    } else if (permission.shouldShowRequestPermissionRationale){
+                    // At least one denied permission without ask never again
+                } else {
+            // At least one denied permission with ask never again
+            // Need to go to the settings
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
 
 
 
