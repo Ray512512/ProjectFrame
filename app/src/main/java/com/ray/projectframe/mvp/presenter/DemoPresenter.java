@@ -5,11 +5,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.ray.library.base.mvp.BasePresenter;
+import com.ray.library.bean.BaseModel;
 import com.ray.library.bean.DemoUser;
 import com.ray.library.rxjava.RxHelper;
 import com.ray.library.rxjava.RxRetrofitCache;
@@ -18,18 +20,31 @@ import com.ray.library.rxjava.util.RxInterface;
 import com.ray.library.rxjava.util.RxManager;
 import com.ray.library.utils.SPUtils;
 import com.ray.library.utils.SystemUtil;
+import com.ray.library.utils.T;
 import com.ray.projectframe.R;
 import com.ray.projectframe.api.Api;
 import com.ray.projectframe.api.ApiService;
-import com.ray.projectframe.mvp.view.LoginIView;
+import com.ray.projectframe.mvp.view.DemoIView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import org.reactivestreams.Subscription;
+
+import java.net.SocketTimeoutException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
 
 import static com.ray.projectframe.mvp.presenter.DemoEntry.REG_LOGIN;
 
@@ -38,19 +53,15 @@ import static com.ray.projectframe.mvp.presenter.DemoEntry.REG_LOGIN;
  * Created by ray on 17/5/16.
  * RxJava操作符使用案例
  */
-public class DemoPresenter extends BasePresenter<LoginIView> {
-    private static final String TAG = "LoginPresenter";
+public class DemoPresenter extends BasePresenter<DemoIView> {
+    private static final String TAG = "DemoPresenter";
+    private static final int MAX_RETRY_TIME = 3;
 
-    public DemoPresenter(Activity mContext, LoginIView mView) {
+    public DemoPresenter(Activity mContext, DemoIView mView) {
         super(mContext, mView);
     }
-
-    //登录
-    public void login(Context c,String phone) {
-        DemoEntry registEntry=new DemoEntry(REG_LOGIN);
-        registEntry.setMobile(phone);
-        registEntry.setPassword("123456");
-        registEntry.setExt0(SystemUtil.getDeviceId(c));
+    long TEST_NUM = 0;
+    public void test() {
         /**
          * 1.普通请求
          */
@@ -68,10 +79,16 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
 
                 });
 
+
         /**
          * 2.遇到异常重试请求
          */
-        api.register().retryWhen(RxHelper.retryWhen()).compose(RxHelper.handleResult()).
+        api.register().retryWhen(RxHelper.retryWhen(MAX_RETRY_TIME, new RxInterface.reTryWhen() {
+            @Override
+            public boolean isRetry(Throwable throwable) {
+                return throwable instanceof SocketTimeoutException;
+            }
+        })).compose(RxHelper.handleResult()).
                 subscribe(new RxSubscribe<DemoUser>(mContext,mView) {
                     @Override
                     public void _onNext(DemoUser demoUser) {
@@ -98,6 +115,27 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
 
                     }
                 }));
+
+        /**
+         * 4.有条件轮询
+         */
+        RxManager.interval(1, new RxInterface.intervalInterface2() {
+            @Override
+            public boolean isStop() {
+                return TEST_NUM > 10;
+            }
+
+            @Override
+            public void action(long time) {
+                T.show("" + time);
+                TEST_NUM = time;
+                System.out.print("interval 2\t" + time);
+            }
+        });
+
+        RxManager.delay(1, () -> {
+            //do something
+        });
 
         /**
          *4. 依次执行两个请求
@@ -131,26 +169,8 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
                 e.onComplete();
             }
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-        Observable.merge(fromCache, api.register()).subscribe(new Observer<Object>() {
-            @Override
-            public void onSubscribe(Disposable d) {
+        Observable.merge(fromCache, api.register()).takeUntil( api.register()).subscribe(o -> {
 
-            }
-
-            @Override
-            public void onNext(Object o) {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
         });
         /**
          * 6.合并两个请求结果后发送事件2
@@ -213,9 +233,25 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
 
        });
 
+       Button button=new Button(mContext);
+        Observable<Object> clicks = RxView.clicks(button).share();
+        clicks.buffer(clicks.debounce(300, TimeUnit.MILLISECONDS))
+                .map(new Function<List<Object>, Integer>() {
+                    @Override
+                    public Integer apply(List<Object> objects) throws Exception {
+                        return objects.size();
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+
+                    }
+                });
 
         /**
-         * 自动搜索优化
+         * 10.自动搜索优化
          * 间隔时间达到固定值才能响应事件
          */
         RxManager.autoSearch(name, 1000, () -> {
@@ -223,7 +259,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
         });
 
         /**
-         * RxPermission 单权限检测
+         * 11.RxPermission 单权限检测
          */
         RxPermissions rxPermissions = new RxPermissions(mContext);
         rxPermissions.request(Manifest.permission.CAMERA)
@@ -236,7 +272,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
                 });
 
         /**
-         * RxPermissions 多权限检测
+         * 12.RxPermissions 多权限检测
          */
         rxPermissions
                 .request(Manifest.permission.CAMERA,
@@ -250,7 +286,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
                 });
 
         /**
-         * RxPermissions 结合Rxbinding 实现点击按钮自动权限检测响应
+         * 13.RxPermissions 结合Rxbinding 实现点击按钮自动权限检测响应
          */
         RxView.clicks(mContext.findViewById(R.id.ALT))
                 .compose(rxPermissions.ensure(Manifest.permission.CAMERA))
@@ -259,7 +295,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
                 });
 
         /**
-         * 权限流程处理 两个请求同时处理
+         * 14.权限流程处理 两个请求同时处理
          */
         rxPermissions
                 .requestEach(Manifest.permission.CAMERA,
@@ -276,7 +312,7 @@ public class DemoPresenter extends BasePresenter<LoginIView> {
                 });
 
         /**
-         * 权限流程处理 两个请求分开处理
+         * 15.权限流程处理 两个请求分开处理
          */
         rxPermissions
                 .requestEachCombined(Manifest.permission.CAMERA,

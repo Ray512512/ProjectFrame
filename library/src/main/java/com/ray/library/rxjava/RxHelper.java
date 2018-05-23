@@ -3,6 +3,7 @@ package com.ray.library.rxjava;
 
 import com.ray.library.bean.BaseModel;
 import com.ray.library.retrofit.ServerException;
+import com.ray.library.rxjava.util.RxInterface;
 import com.ray.library.utils.L;
 
 import java.net.SocketTimeoutException;
@@ -39,11 +40,11 @@ public class RxHelper {
 
     }
 
-    public static Function<Observable<Throwable>, ObservableSource<?>> retryWhen() {
+    public static Function<Observable<Throwable>, ObservableSource<?>> retryWhen(int retryTime, RxInterface.reTryWhen reTryWhen) {
         final int[] currentTime = {0};
         return throwableObservable -> throwableObservable.flatMap((Function<Throwable, ObservableSource<?>>) throwable -> {
-            if(throwable instanceof SocketTimeoutException){ //目前只处理超时情况
-                if(currentTime[0]++<MAX_RETRY_TIME) {
+            if(reTryWhen.isRetry(throwable)){ //目前只处理超时情况
+                if(currentTime[0]++<retryTime) {
                     L.v("","超时重试"+ currentTime[0] +"/"+MAX_RETRY_TIME);
                     return Observable.just(1).delay(1, TimeUnit.SECONDS);
                 }

@@ -43,8 +43,8 @@ public abstract class CheckPermissionsActivity<P extends BasePresenter> extends 
 	protected String[] needPermissions = {
 //			Manifest.permission.ACCESS_COARSE_LOCATION,
 //			Manifest.permission.ACCESS_FINE_LOCATION,
-			Manifest.permission.READ_PHONE_STATE,
-			Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//			Manifest.permission.READ_PHONE_STATE,
+//			Manifest.permission.WRITE_EXTERNAL_STORAGE,
 //			Manifest.permission.CAMERA,
 			};
 	
@@ -92,6 +92,7 @@ public abstract class CheckPermissionsActivity<P extends BasePresenter> extends 
 			L.v("","待检测的权限个数："+needPermissions.length);
 			if(needPermissions.length!=0)
 			checkPermissions(needPermissions);
+			else startApp();
 		}
 	}
 	

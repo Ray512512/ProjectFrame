@@ -9,8 +9,10 @@ import com.ray.library.common.TestActivity;
 import com.ray.library.rxbus.Event;
 
 public class SplashActivity extends CheckPermissionsActivity {
-
-
+    /**
+     * 获取需要检测的权限列表，返回null 直接回调startApp()
+     * @return
+     */
     @Override
     protected String[] getPermissions() {
         return null;

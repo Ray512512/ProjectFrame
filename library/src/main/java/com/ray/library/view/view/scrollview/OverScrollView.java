@@ -163,7 +163,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener
     {  
         metrics = this.mContext.getResources().getDisplayMetrics();  
   
-        // init the bouncy scroller, and make sure the layout is being drawn  
+        // create the bouncy scroller, and make sure the layout is being drawn
         // after the top padding  
         mScroller = new Scroller(getContext(), new OvershootInterpolator(OVERSHOOT_TENSION));
         overScrollerSpringbackTask = new Runnable()

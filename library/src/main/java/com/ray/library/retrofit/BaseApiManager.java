@@ -28,7 +28,7 @@ public class BaseApiManager {
      * @param <T>
      * @return
      */
-    public static <T> T init(Class<T> apiServer, String rootUrl, Interceptor...interceptors){
+    public static <T> T create(Class<T> apiServer, String rootUrl, Interceptor...interceptors){
         if(retrofit==null) {
             ROOT_URL=rootUrl;
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();

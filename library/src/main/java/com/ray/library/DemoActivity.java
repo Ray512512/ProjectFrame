@@ -175,7 +175,7 @@ public class DemoActivity extends BaseActivity {
                 break;
             case R.id.query:
                 DemoUser s = mUserDao.queryBuilder().where(UserDao.Properties.Name.eq("蒲蒲")).unique();
-//                DemoUser s=mUserDao.init((long) 2);
+//                DemoUser s=mUserDao.create((long) 2);
                 tvTest.setText(s == null ? "暂无此用户" : s.getName());
                 break;
             case R.id.seletor_pic:
@@ -203,10 +203,10 @@ public class DemoActivity extends BaseActivity {
                 String path = "file://" + data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT).get(0);
                 switch (requestCode) {
                     case 1:
-                        Glide.with(this).init(path).into(imgShow);
+                        Glide.with(this).create(path).into(imgShow);
                         break;
                     case 2:
-                        Glide.with(this).init(path).into(imgShow);
+                        Glide.with(this).create(path).into(imgShow);
                         break;
                 }
                 break;

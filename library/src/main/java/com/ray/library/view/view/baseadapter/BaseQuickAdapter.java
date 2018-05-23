@@ -820,7 +820,7 @@ public abstract class BaseQuickAdapter<T> extends RecyclerView.Adapter<RecyclerV
     }
 
     /**
-     * init the baseViewHolder to register onRecyclerViewItemClickListener and onRecyclerViewItemLongClickListener
+     * create the baseViewHolder to register onRecyclerViewItemClickListener and onRecyclerViewItemLongClickListener
      *
      * @param baseViewHolder
      */

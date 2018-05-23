@@ -120,6 +120,11 @@ public abstract class BaseActivity<P extends BasePresenter>  extends AppCompatAc
     }
 
 
+    /**
+     * 当需要用到异常页面替换时 调用initHelperView
+     * 不需要时不调用即可
+     * mVaryViewHelper具体实例化可写一个公共方法自己实现
+     */
     protected void initHelperView(){
         initHelperView(ViewUtils.getRootView(this));
     }

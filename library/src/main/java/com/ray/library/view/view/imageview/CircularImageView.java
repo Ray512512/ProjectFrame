@@ -43,7 +43,7 @@ public class CircularImageView extends AppCompatImageView
 
     private void setup()
     {
-        // init paint
+        // create paint
         paint = new Paint();
         paint.setAntiAlias(true);
 
@@ -85,7 +85,7 @@ public class CircularImageView extends AppCompatImageView
         // load the bitmap
         loadBitmap();
 
-        // init shader
+        // create shader
         if (image != null)
         {
             shader = new BitmapShader(Bitmap.createScaledBitmap(image, canvas.getWidth(), canvas.getHeight(), false), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);

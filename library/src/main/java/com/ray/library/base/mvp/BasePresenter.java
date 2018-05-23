@@ -13,17 +13,10 @@ public abstract class BasePresenter<I extends BaseIView> {
     private static final String TAG = "BasePresenter";
     protected I mView;//view接口
     protected Activity mContext;
-    protected Object api;
 
     public BasePresenter(Activity mContext, I mView) {
         this.mContext = mContext;
         this.mView = mView;
-        api= BaseApiManager.getInstance().getApi();
-    }
-
-
-    protected void showToast(String msg){
-        Toast.makeText(mContext,msg, Toast.LENGTH_SHORT).show();
     }
 
     public void onDetachView() { //销毁的时候

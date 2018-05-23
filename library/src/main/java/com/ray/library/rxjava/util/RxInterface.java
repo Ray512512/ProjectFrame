@@ -32,4 +32,8 @@ public class RxInterface {
         boolean getResult();
         void action(boolean b);
     }
+
+    public interface reTryWhen{
+        boolean isRetry(Throwable throwable);
+    }
 }
