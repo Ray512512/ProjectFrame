@@ -523,12 +523,21 @@ RxManager.delay(1, () -> {
        /**
          * 实现较为复杂的合并2个网络请求数据 & 统一展示
          */
-        Observable.zip(api.register(), api.register(), (userBaseModel, userBaseModel2) ->
-                new DemoUser(userBaseModel.msg + userBaseModel2.msg)).observeOn(AndroidSchedulers.mainThread()) // 在主线程接收 & 处理数据
-                .subscribe(combine_infro -> {
-                    // 结合显示2个网络请求的数据结果
-                    Log.d(TAG, "最终接收到的数据是：" + combine_infro);
-                }, throwable -> System.out.println("失败"));
+        Observable.zip(Api.get().register(), Api.get().register(), new BiFunction< BaseModel<DemoUser>,  BaseModel<DemoUser>, DemoUser>() {
+                   @Override
+                   public DemoUser apply(BaseModel<DemoUser> meizhiData, BaseModel<DemoUser> vedioData) throws Exception {
+                       return new DemoUser();
+                   }
+               }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<DemoUser>() {
+                   @Override
+                   public void accept(DemoUser demoUser) throws Exception {
+                   }
+               }, new Consumer<Throwable>() {
+                   @Override
+                   public void accept(Throwable throwable) throws Exception {
+
+                   }
+               });
 ~~~
 
 #####     组合本地数据与网络数据，本地有缓存可不访问网络
