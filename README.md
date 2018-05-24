@@ -33,15 +33,15 @@ app gradle
 
 ##### 1.Rx家族
 
-######    java响应式编程[Rxjava ](https://github.com/ReactiveX/RxJava)
+#####         java响应式编程[Rxjava ](https://github.com/ReactiveX/RxJava)
 
-######    android响应式编程[RxAndroid](https://github.com/ReactiveX/RxAndroid)
+#####        android响应式编程[RxAndroid](https://github.com/ReactiveX/RxAndroid)
 
-######    事件总线[RxBus](https://github.com/AndroidKnife/RxBus)
+#####        事件总线[RxBus](https://github.com/AndroidKnife/RxBus)
 
-######    View事件扩展[RxBinding ](https://github.com/JakeWharton/RxBinding)
+#####        View事件扩展[RxBinding ](https://github.com/JakeWharton/RxBinding)
 
-######    权限检测[RxPermissions](https://github.com/tbruyelle/RxPermissions)
+#####        权限检测[RxPermissions](https://github.com/tbruyelle/RxPermissions)
 
 ##### 2.控件绑定[ButterKnife](https://github.com/JakeWharton/butterknife)
 
