@@ -38,6 +38,7 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -233,22 +234,19 @@ public class DemoPresenter extends BasePresenter<DemoIView> {
 
        });
 
-       Button button=new Button(mContext);
-        Observable<Object> clicks = RxView.clicks(button).share();
-        clicks.buffer(clicks.debounce(300, TimeUnit.MILLISECONDS))
-                .map(new Function<List<Object>, Integer>() {
-                    @Override
-                    public Integer apply(List<Object> objects) throws Exception {
-                        return objects.size();
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
+        /**
+         * 点击了一个按钮在多个地方收到通知
+         */
+        Button button=new Button(mContext);
+        Observable<Object> observable = RxView.clicks(button).share();
+        CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-                    }
-                });
+        Disposable disposable1 = observable.subscribe(o -> Log.d(TAG, "disposable1, receive: " + o.toString()));
+        Disposable disposable2 = observable.subscribe(o -> Log.d(TAG, "disposable2, receive: " + o.toString()));
+
+        compositeDisposable.add(disposable1);
+        compositeDisposable.add(disposable2);
+
 
         /**
          * 10.自动搜索优化
@@ -274,9 +272,7 @@ public class DemoPresenter extends BasePresenter<DemoIView> {
         /**
          * 12.RxPermissions 多权限检测
          */
-        rxPermissions
-                .request(Manifest.permission.CAMERA,
-                        Manifest.permission.READ_PHONE_STATE)
+        rxPermissions.request(Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE)
                 .subscribe(granted -> {
                     if (granted) {
                         // All requested permissions are granted
@@ -288,8 +284,7 @@ public class DemoPresenter extends BasePresenter<DemoIView> {
         /**
          * 13.RxPermissions 结合Rxbinding 实现点击按钮自动权限检测响应
          */
-        RxView.clicks(mContext.findViewById(R.id.ALT))
-                .compose(rxPermissions.ensure(Manifest.permission.CAMERA))
+        RxView.clicks(mContext.findViewById(R.id.ALT)).compose(rxPermissions.ensure(Manifest.permission.CAMERA))
                 .subscribe(granted -> {
                     // R.id.enableCamera has been clicked
                 });
@@ -297,9 +292,7 @@ public class DemoPresenter extends BasePresenter<DemoIView> {
         /**
          * 14.权限流程处理 两个请求同时处理
          */
-        rxPermissions
-                .requestEach(Manifest.permission.CAMERA,
-                        Manifest.permission.READ_PHONE_STATE)
+        rxPermissions.requestEach(Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE)
                 .subscribe(permission -> { // will emit 2 Permission objects
                     if (permission.granted) {
                         // `permission.name` is granted !
@@ -314,9 +307,7 @@ public class DemoPresenter extends BasePresenter<DemoIView> {
         /**
          * 15.权限流程处理 两个请求分开处理
          */
-        rxPermissions
-                .requestEachCombined(Manifest.permission.CAMERA,
-                        Manifest.permission.READ_PHONE_STATE)
+        rxPermissions.requestEachCombined(Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE)
                 .subscribe(permission -> { // will emit 1 Permission object
                     if (permission.granted) {
                         // All permissions are granted !
