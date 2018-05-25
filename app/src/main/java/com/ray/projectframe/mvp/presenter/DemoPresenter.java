@@ -1,6 +1,7 @@
 package com.ray.projectframe.mvp.presenter;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
@@ -45,9 +46,12 @@ import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
+import rx.functions.Action1;
 
 import static com.ray.projectframe.mvp.presenter.DemoEntry.REG_LOGIN;
 
@@ -144,21 +148,11 @@ public class DemoPresenter extends BasePresenter<DemoIView> {
          *4. 依次执行两个请求
          * 第二个请求需使用第一个请求的结果
          */
-        api.register().compose(RxHelper.handleResult()).doOnNext(o -> {
-             //第一次请求成功
-        }).flatMap(user -> api.register()).compose(RxHelper.handleResult()).
-                subscribe(new RxSubscribe<DemoUser>(mContext,mView) {
-                    @Override
-                    public void _onNext(DemoUser demoUser) {
-                        //第二次请求成功
-                    }
+        api.register().flatMap((Function<BaseModel<DemoUser>, ObservableSource<BaseModel<DemoUser>>>) demoUserBaseModel -> api.register()).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(demoUserBaseModel -> {
 
-                    @Override
-                    public void _onError(String message) {
-
-                    }
                 });
-
 
         /**
          * 5.合并两个请求结果后发送事件1
