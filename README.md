@@ -481,20 +481,11 @@ RxManager.delay(1, () -> {
          /**
          * 第二个请求需使用第一个请求的结果
          */
-        api.register().compose(RxHelper.handleResult()).doOnNext(o -> {
-             //第一次请求成功
-        }).flatMap(user -> api.register()).compose(RxHelper.handleResult()).
-                subscribe(new RxSubscribe<DemoUser>(mContext,mView) {
-                    @Override
-                    public void _onNext(DemoUser demoUser) {
-                        //第二次请求成功
-                    }
+        api.register().flatMap((Function<BaseModel<DemoUser>, ObservableSource<BaseModel<DemoUser>>>) demoUserBaseModel -> api.register()).subscribeOn(Schedulers.io())
+                       .observeOn(AndroidSchedulers.mainThread())
+                       .subscribe(demoUserBaseModel -> {
 
-                    @Override
-                    public void _onError(String message) {
-
-                    }
-                });
+                       });
 ~~~
 
 #####     两个请求同时发送
